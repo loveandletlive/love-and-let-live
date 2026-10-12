@@ -71,7 +71,14 @@
     font-size:clamp(30px,5.4vw,58px);line-height:1.22;
     letter-spacing:0.005em;color:var(--text);
     opacity:0;transition:opacity 1.5s ease;
-    text-wrap:balance;
+  }
+  /* The text MUST live in a single child. A flex container blockifies every
+     element child into its own flex item, so a bare "...text <em>text</em>"
+     became two items and laid out as two columns with a gap between them —
+     invisible on a wide screen, broken on a phone. One span, one item. */
+  .ask .q{
+    display:block;max-width:100%;
+    text-wrap:balance;text-wrap:pretty;
   }
   .ask.on{opacity:1;}
   .ask em{font-style:italic;color:var(--gold-soft);}
@@ -163,7 +170,7 @@
     var nodes = QUESTIONS.map(function(q){
       var d = document.createElement('div');
       d.className = 'ask';
-      d.innerHTML = q;
+      d.innerHTML = '<span class="q">' + q + '</span>';
       box.appendChild(d);
       return d;
     });
