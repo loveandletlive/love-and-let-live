@@ -308,7 +308,7 @@
 
 <div class="topbar">
   <a class="brand" href="index.html">Love <span>&amp;</span> Let Live</a>
-  <a class="toplink" href="index.html" id="leave">← Back to Start</a>
+  <a class="toplink" href="index.html" id="leave">← Back</a>
 </div>
 
 <!-- ============ THRESHOLD ============ -->
@@ -351,7 +351,7 @@
   <div class="sub">Roads from here</div>
   <div id="p-roads"></div>
   <div class="divider"></div>
-  <div class="sub">Episodes on this road</div>
+  <div class="sub">From here</div>
   <div id="p-eps"></div>
 </aside>
 
@@ -367,8 +367,8 @@
 
     <p class="fine-print">
       <strong>Nothing is coming back.</strong> There's no reply, no promise it becomes
-      an episode, and no way to follow one up. Questions left here are read, and some
-      may be read aloud on the show — never with anything attached to them, because
+      anything happens next, and no way to follow one up. Questions left here are read,
+      and some may be read aloud one day — never with anything attached to them, because
       there's nothing to attach. No name, no email, no account. I have no way of
       knowing who you are, and I'd rather keep it that way.
     </p>
@@ -402,7 +402,7 @@
    themselves and find nothing here arguing with them. */
 const NODES = [
   { id:'still-asking', label:'Still Asking', r:1.75, core:true,
-    lede:'The position that no person can know with certainty what is ultimately true, and that this is worth saying plainly rather than working around. One conviction is held without qualification: the question stays open this side of death. Everything else is held loosely, and revised when something more convincing turns up. This is where the host stands.' },
+    lede:'The position that no person can know with certainty what is ultimately true, and that this is worth saying plainly rather than working around. One conviction is held without qualification: the question stays open this side of death. Everything else is held loosely, and revised when something more convincing turns up. This is the point this map was drawn from.' },
   { id:'christian', label:'Christian', r:2.75,
     lede:'Christians hold that God became human in Jesus of Nazareth, who taught, was crucified, and rose from the dead; that his life reveals God\'s character; and that people are reconciled to God through him. Asked which commandment was greatest, Jesus named two: love God, and love your neighbour as yourself.' },
   { id:'muslim', label:'Muslim', r:2.35,
@@ -514,19 +514,19 @@ const ROADS = [
 ];
 
 /* Only what actually exists. Nothing is announced before it's known. */
-const EPISODES = {
-  'still-asking':[
-    {n:'01', t:'Terms and Conditions', s:'Ground rules, and the two questions. No refunds.', status:'In Production', href:'index.html#coming'},
-    {n:'02', t:'The Most Important Meal of the Day', s:'One Tuesday, two kids, and no revelations', status:'In Production'},
-  ],
-};
+/* Episodes are PAUSED (see the footnote on about.html). This object is left
+   in place because the panel still knows how to render it — drop entries back
+   in, keyed by node id, the day there's something to list. Empty is correct
+   for now: listing two unrecorded episodes turned every panel into a waiting
+   room for a show that isn't coming yet. */
+const EPISODES = {};
 
 /* -----------------------------------------------------------------------
    THE UNANSWERED LINE
    ---------------------------------------------------------------------
-   Episode requests are OFF. The first several episodes are background and
-   map set-up, so a request arriving now could not be honoured for months —
-   and an unanswerable request is worse than never asking.
+   Episode requests are OFF and stay off — a request nobody can honour is
+   worse than never asking. The same form also stands alone at ask.html, for
+   anyone who arrives without going through the map.
 
    In its place: a phone that isn't connected. Somewhere to put the question
    you've never felt able to ask about a tradition, with no reply offered and
@@ -548,14 +548,14 @@ const EPISODES = {
    2. NO NAME OR EMAIL FIELD, ever, in the Tally form or here. The privacy
       line is only true because the fields do not exist. Adding one makes
       the site lie to someone in a soft moment.
-   3. The panel says questions may be read on the show. Keep it visible.
+   3. The panel says questions may be read aloud. Keep that visible.
    4. In Tally: "Save answers for later" must stay OFF. It parks unsubmitted
       answers in the visitor's own browser storage, where anyone sharing the
       device could find a half-written question. Switched off 2026-07-30.
    5. Never switch on "Prevent duplicate submissions" — it identifies people
       by IP, which is exactly what we promised not to hold.
    ----------------------------------------------------------------------- */
-const REQUESTS_ENABLED = false;      // episode requests — leave off until ~Ep 5
+const REQUESTS_ENABLED = false;      // episode requests — off, indefinitely
 const ASK_ENABLED      = true;       // the unanswered line
 const TALLY_FORM_ID    = 'KYAyDz';   // tally.so/r/KYAyDz — empty = hidden
 
@@ -958,10 +958,10 @@ function drawNodes(time){
       ctx.restore();
       /* No "YOU ARE HERE" marker. It used to sit over Still Asking, but it
          never moved with the visitor, so it read as the map telling everyone
-         they stand where the host stands. The whole premise is that there is
+         they stand where this map was drawn from. The premise is that there is
          no centre and no wrong starting point — a fixed label pinning the
-         viewer to one marker contradicts that. Where the host stands is said
-         in the panel instead, where it's clearly the host speaking. */
+         viewer to one marker contradicts that. The starting point is named
+         in the panel instead, where it's plainly one position among many. */
     }
     ctx.globalAlpha=1;
     hitboxes.push({id:n.id,x:p.x,y:(p.y+top)/2,r:Math.max(22,ph*0.85)});
@@ -1130,7 +1130,7 @@ function selectNode(id,fromEntry){
   while(target-rot<-Math.PI) target+=Math.PI*2;
   rotTarget=target; rotVel=0;
 
-  document.getElementById('p-eyebrow').textContent=n.core?'Where The Host Stands':'Entry Point';
+  document.getElementById('p-eyebrow').textContent=n.core?'Where This Was Drawn From':'Entry Point';
   document.getElementById('p-title').textContent=n.label;
   document.getElementById('p-lede').textContent=n.lede;
 
@@ -1153,9 +1153,12 @@ function selectNode(id,fromEntry){
   if(!eps.length){
     const e=document.createElement('div');
     e.className='empty';
-    /* "a few" not "two" — the opening run is mapped out well past episode 2,
-       and saying two makes it sound like the plan runs out immediately. */
-    e.textContent='Nothing recorded here yet. The first few episodes lay the groundwork; where the show goes after them isn’t decided.';
+    /* No promises here. The panel used to advertise episodes; now it offers
+       the one thing this site can actually do for someone standing here. */
+    e.innerHTML='Nothing written from this point yet. If there’s something about '
+              + 'this one you’ve never been able to ask out loud, '
+              + '<a href="ask.html" style="color:#ffd88a;border-bottom:1px dotted rgba(240,185,77,0.45)">the line is open</a> '
+              + '— nobody answers it, and nothing about you is recorded.';
     eWrap.appendChild(e);
   } else eps.forEach(ep=>{
     const d=document.createElement('div');

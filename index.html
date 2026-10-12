@@ -3,38 +3,35 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Love and Let Live — A Podcast</title>
-<meta name="description" content="A podcast built on two questions: is there more that brings us together than divides us, and what happens if the thing we call God is love? In production — the map is open now.">
+<title>Love and Let Live</title>
+<meta name="description" content="No one knows the truth, and no one will. That is not an argument against believing something — only against being so certain you lose people over it. Love, and let live.">
 <link rel="canonical" href="https://loveandletlive.com/">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <!-- og:image MUST be absolute — link previews break silently on a relative path -->
 <meta property="og:title" content="Love and Let Live">
-<meta property="og:description" content="Is there more that brings us together than divides us? And what happens if the thing we call God is love?">
+<meta property="og:description" content="Who's missing from your table?">
 <meta property="og:image" content="https://loveandletlive.com/assets/social-card.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="A glowing orb above a dark landscape webbed with golden threads and map markers.">
+<meta property="og:image:alt" content="A glowing orb above a dark landscape webbed with golden threads.">
 <meta property="og:url" content="https://loveandletlive.com/">
 <meta property="og:site_name" content="Love and Let Live">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Love and Let Live">
-<meta name="twitter:description" content="Is there more that brings us together than divides us? And what happens if the thing we call God is love?">
+<meta name="twitter:description" content="Who's missing from your table?">
 <meta name="twitter:image" content="https://loveandletlive.com/assets/social-card.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   :root{
     --bg:#04070f;
-    --panel:#0a1122;
-    --panel-2:#0e1730;
     --gold:#f0b94d;
     --gold-soft:#ffd88a;
     --text:#eef0f5;
     --dim:#8b98b6;
     --line:rgba(240,185,77,0.18);
-    --max:1080px;
   }
   *{box-sizing:border-box;margin:0;padding:0;}
   html{scroll-behavior:smooth;}
@@ -43,518 +40,147 @@
     font-family:'Inter',sans-serif;font-weight:300;line-height:1.65;
     -webkit-font-smoothing:antialiased;
   }
-  h1,h2,h3,.serif{font-family:'Cormorant Garamond',serif;font-weight:500;letter-spacing:0.01em;}
   a{color:inherit;text-decoration:none;}
-  .wrap{max-width:var(--max);margin:0 auto;padding:0 28px;}
-  .narrow{max-width:680px;margin-left:auto;margin-right:auto;}
-  .eyebrow{
-    font-size:11px;letter-spacing:0.28em;text-transform:uppercase;
-    color:var(--gold);font-weight:500;
-  }
+  .wrap{max-width:900px;margin:0 auto;padding:0 28px;}
 
-  /* NAV */
-  nav{
-    position:sticky;top:0;z-index:50;
-    background:rgba(4,7,15,0.86);backdrop-filter:blur(10px);
-    border-bottom:1px solid var(--line);
-  }
-  nav .wrap{display:flex;align-items:center;justify-content:space-between;height:68px;}
-  .logo{
-    font-family:'Cormorant Garamond',serif;font-size:19px;
-    letter-spacing:0.14em;text-transform:uppercase;
-  }
-  .logo span{color:var(--gold);}
-  .navlinks{display:flex;gap:32px;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:var(--dim);}
-  .navlinks a:hover{color:var(--gold-soft);}
-  /* On a phone, collapse to the one link that matters rather than hiding the
-     whole nav and leaving the header with no way through to the map. */
-  @media (max-width:700px){
-    .navlinks{gap:0;}
-    .navlinks a{display:none;}
-    .navlinks a.keep{display:inline;color:var(--gold-soft);}
-  }
-
-  /* HERO
-     One job: say what this is, in one breath, and offer exactly two doors.
-     Everything that used to live here has moved further down the page. */
-  .hero{
-    position:relative;min-height:94vh;min-height:94dvh;display:flex;align-items:flex-end;
+  /* ---------- THE DOOR ----------
+     One question at a time. No nav, no logo at the top, nothing to click
+     above the fold. Someone who typed this URL off a sticker gets a question
+     and silence, which is the whole point. */
+  .door{
+    position:relative;min-height:calc(100vh - 92px);min-height:calc(100dvh - 92px);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    text-align:center;padding:56px 28px 0;
     background-image:
-      linear-gradient(180deg, rgba(4,7,15,0.30) 0%, rgba(4,7,15,0.45) 42%, rgba(4,7,15,0.98) 93%),
-      url('assets/cover-art.jpg');
-    background-size:cover;background-position:center 38%;
-  }
-  .hero-inner{width:100%;padding-bottom:64px;text-align:center;}
-  .hero .eyebrow{display:block;margin-bottom:18px;}
-  .hero h1{font-size:clamp(46px,8vw,94px);line-height:1.02;margin-bottom:22px;}
-  .hero h1 em{font-style:italic;color:var(--gold-soft);}
-  .tagline{max-width:600px;margin:0 auto 34px;color:var(--dim);font-size:17px;}
-  .btn-row{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
-  .btn{
-    display:inline-flex;align-items:center;gap:9px;padding:14px 28px;
-    font-size:12px;letter-spacing:0.12em;text-transform:uppercase;
-    border-radius:2px;transition:all .2s ease;
-  }
-  .btn-primary{background:var(--gold);color:#12101a;font-weight:600;}
-  .btn-primary:hover{background:var(--gold-soft);}
-  .btn-outline{border:1px solid rgba(238,240,245,0.28);color:var(--text);}
-  .btn-outline:hover{border-color:var(--gold);color:var(--gold-soft);}
-  /* the quiet scroll cue — the page rewards going down, so say so */
-  .scroll-cue{
-    display:block;margin-top:30px;font-size:10.5px;letter-spacing:0.24em;
-    text-transform:uppercase;color:rgba(139,152,182,0.55);
-  }
-
-  section{padding:104px 0;}
-  .section-head{text-align:center;max-width:620px;margin:0 auto 56px;}
-  .section-head h2{font-size:clamp(30px,4vw,44px);margin-top:14px;}
-  .section-head p{color:var(--dim);margin-top:16px;font-size:16px;}
-
-  /* WHAT THIS IS — the plain-language landing that used to be missing.
-     Deliberately unadorned: no cards, no columns, nothing to parse. */
-  .what{border-bottom:1px solid var(--line);}
-  .what p{color:var(--dim);font-size:17px;margin-bottom:22px;}
-  .what p strong{color:var(--text);font-weight:500;}
-  .what .lead{font-size:20px;color:var(--text);font-weight:300;line-height:1.6;}
-  .two-q{
-    margin:34px 0;padding:26px 30px;border-left:2px solid var(--gold);
-    background:rgba(240,185,77,0.04);
-  }
-  .two-q div{
-    font-family:'Cormorant Garamond',serif;font-style:italic;
-    font-size:20px;line-height:1.45;color:var(--gold-soft);
-  }
-  .two-q div + div{margin-top:14px;}
-  .status-note{
-    margin-top:34px;padding-top:24px;border-top:1px solid var(--line);
-    font-size:15px;color:rgba(139,152,182,0.85);
-  }
-
-  /* MAP CTA — promoted. Until episodes exist this is the finished thing. */
-  .mapcta{
-    position:relative;text-align:center;
-    background-image:
-      linear-gradient(180deg, rgba(4,7,15,0.90) 0%, rgba(4,7,15,0.60) 50%, rgba(4,7,15,0.94) 100%),
+      radial-gradient(ellipse at 50% 42%, rgba(240,185,77,0.13) 0%, rgba(4,7,15,0) 58%),
+      linear-gradient(180deg, rgba(4,7,15,0.55) 0%, rgba(4,7,15,0.80) 70%, var(--bg) 100%),
       url('assets/golden-orb.jpg');
-    background-size:cover;background-position:center;
-    border-top:1px solid var(--line);border-bottom:1px solid var(--line);
-    padding:124px 0;
-  }
-  .mapcta h2{font-size:clamp(32px,5vw,52px);margin:16px 0 20px;}
-  .mapcta p{max-width:580px;margin:0 auto 20px;color:#c3cde3;font-size:16px;}
-  .mapcta .how{
-    max-width:580px;margin:0 auto 34px;color:rgba(195,205,227,0.72);font-size:15px;
+    background-size:cover;background-position:center 35%;
   }
 
-  /* WHY — the credo, in the place Bill asked for it */
-  .why{background:var(--panel);}
-  .why .quote{
-    font-family:'Cormorant Garamond',serif;font-style:italic;
-    font-size:clamp(22px,3vw,29px);line-height:1.42;color:var(--gold-soft);
-    text-align:center;max-width:720px;margin:0 auto 12px;
+  /* The questions stack in the same spot and cross-fade. Min-height stops the
+     page jumping as lines of different length swap in. */
+  .asks{
+    position:relative;width:100%;max-width:760px;
+    min-height:4.6em;display:flex;align-items:center;justify-content:center;
   }
-  .why .attrib{
-    text-align:center;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;
-    color:rgba(139,152,182,0.6);margin-bottom:44px;
+  .ask{
+    position:absolute;inset:0;
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Cormorant Garamond',serif;font-weight:400;
+    font-size:clamp(30px,5.4vw,58px);line-height:1.22;
+    letter-spacing:0.005em;color:var(--text);
+    opacity:0;transition:opacity 1.5s ease;
+    text-wrap:balance;
   }
-  .why p{color:var(--dim);font-size:16.5px;margin-bottom:20px;}
-  .why p strong{color:var(--text);font-weight:500;}
-  .why a{color:var(--gold-soft);border-bottom:1px dotted rgba(240,185,77,0.45);}
+  .ask.on{opacity:1;}
+  .ask em{font-style:italic;color:var(--gold-soft);}
 
-  /* WHAT'S COMING */
-  .ep{
-    display:grid;grid-template-columns:64px 1fr auto;gap:22px;align-items:center;
-    padding:24px 28px;background:var(--panel);border:1px solid var(--line);
-    border-radius:6px;margin-bottom:10px;
+  /* The name is the answer to whatever question is showing. It never moves. */
+  .mark{
+    margin-top:72px;
+    font-family:'Cormorant Garamond',serif;
+    font-size:clamp(15px,2vw,19px);
+    letter-spacing:0.34em;text-transform:uppercase;
+    color:rgba(240,185,77,0.82);
   }
-  @media (max-width:640px){
-    .ep{grid-template-columns:44px 1fr;}
-    .ep .ep-status{grid-column:1/-1;justify-self:start;margin-top:8px;}
-  }
-  .ep-num{font-family:'Cormorant Garamond',serif;font-size:32px;color:var(--gold);opacity:.65;}
-  .ep-title{font-size:17px;margin-bottom:5px;font-weight:400;}
-  .ep-desc{font-size:14px;color:var(--dim);}
-  .ep-status{font-size:10px;letter-spacing:0.14em;text-transform:uppercase;padding:6px 13px;border-radius:20px;white-space:nowrap;}
-  .status-soon{background:rgba(139,152,182,0.07);color:var(--dim);border:1px solid rgba(139,152,182,0.16);}
-  .ep-after{
-    text-align:center;color:var(--dim);font-size:15px;margin-top:32px;
-    max-width:600px;margin-left:auto;margin-right:auto;
-  }
-  .ep-after em{color:var(--gold-soft);font-style:italic;}
+  .mark span{color:var(--gold);}
 
-  /* player slot — stays empty and INVISIBLE until TRANSISTOR is filled in.
-     Nothing on this page should point at something that isn't there. */
-  .player{
-    border:1px solid var(--line);border-radius:6px;overflow:hidden;
-    max-width:680px;margin:0 auto 40px;
+  .cue{
+    position:absolute;bottom:34px;left:50%;transform:translateX(-50%);
+    font-size:10px;letter-spacing:0.26em;text-transform:uppercase;
+    color:rgba(139,152,182,0.42);
   }
-  .player[hidden]{display:none;}
-  .player iframe{display:block;width:100%;border:0;}
-  .subs{
-    display:flex;flex-wrap:wrap;align-items:center;justify-content:center;
-    gap:8px 18px;margin:0 0 40px;font-size:13px;
-  }
-  .subs[hidden]{display:none;}
-  .subs-label{color:var(--dim);text-transform:uppercase;letter-spacing:0.14em;font-size:11px;}
-  .subs a{color:var(--gold-soft);border-bottom:1px solid rgba(240,185,77,0.28);padding-bottom:1px;}
-  .subs a:hover{color:var(--gold);border-bottom-color:var(--gold);}
-  .subs a[hidden]{display:none;}
 
-  /* NOTIFY — the one thing on the page that can actually deliver today */
-  .notify{
-    background:var(--panel-2);border-top:1px solid var(--line);
-    border-bottom:1px solid var(--line);text-align:center;
+  /* The only navigation on the page. Deliberately small and low-contrast —
+     it should be findable, not offered. */
+  .doors{
+    display:flex;align-items:center;justify-content:center;gap:14px;
+    padding:0 28px 54px;flex-wrap:wrap;
+    font-size:11px;letter-spacing:0.2em;text-transform:uppercase;
   }
-  .notify h2{font-size:clamp(28px,4vw,40px);margin:14px 0 18px;}
-  .notify p{color:var(--dim);font-size:16px;max-width:520px;margin:0 auto 32px;}
-  .notify-form{
-    display:flex;gap:10px;justify-content:center;flex-wrap:wrap;
-    max-width:480px;margin:0 auto;
-  }
-  .notify-form input{
-    flex:1 1 260px;padding:14px 16px;background:rgba(255,255,255,0.04);
-    border:1px solid rgba(240,185,77,0.2);border-radius:3px;
-    color:var(--text);font-family:inherit;font-size:15px;font-weight:300;
-  }
-  .notify-form input:focus{
-    outline:none;border-color:rgba(240,185,77,0.55);background:rgba(255,255,255,0.06);
-  }
-  .notify-form button{
-    padding:14px 28px;background:var(--gold);border:none;border-radius:2px;
-    color:#12101a;font-family:inherit;font-weight:600;font-size:12px;
-    letter-spacing:0.12em;text-transform:uppercase;cursor:pointer;
-  }
-  .notify-form button:hover{background:var(--gold-soft);}
-  .notify-form button:disabled{opacity:.5;cursor:default;}
-  .notify-msg{margin-top:20px;font-size:14.5px;color:var(--gold-soft);}
-  .notify-msg[hidden]{display:none;}
-  .notify-fine{margin-top:22px;font-size:12.5px;color:rgba(139,152,182,0.6);}
+  .doors a{color:rgba(139,152,182,0.58);transition:color .25s ease;}
+  .doors a:hover{color:var(--gold-soft);}
+  .dot{color:rgba(139,152,182,0.25);}
 
-  footer{padding:58px 0 40px;}
-  .foot-inner{display:flex;flex-direction:column;align-items:center;gap:20px;text-align:center;}
-  .foot-links{display:flex;gap:24px;flex-wrap:wrap;justify-content:center;font-size:12px;color:var(--dim);text-transform:uppercase;letter-spacing:0.1em;}
-  .foot-links a:hover{color:var(--gold-soft);}
-  .foot-support{font-size:13px;color:rgba(139,152,182,0.72);max-width:520px;}
-  .foot-support a{color:var(--gold-soft);border-bottom:1px dotted rgba(240,185,77,0.45);}
-  .foot-support a:hover{border-bottom-color:var(--gold-soft);}
-  .foot-copy{font-size:12px;color:rgba(139,152,182,0.4);}
+  /* Someone who's turned motion off gets the first question, held still. */
+  @media (prefers-reduced-motion:reduce){
+    .ask{transition:none;}
+  }
 </style>
 </head>
 <body>
 
-<nav>
-  <div class="wrap">
-    <div class="logo">Love <span>&amp;</span> Let Live</div>
-    <div class="navlinks">
-      <a href="#what">What This Is</a>
-      <a class="keep" href="map.html">The Map</a>
-      <a href="#coming">What's Coming</a>
-      <a href="about.html">About</a>
-    </div>
+<header class="door">
+  <div class="asks" id="asks" aria-live="off">
+    <!-- questions injected -->
   </div>
-</nav>
-
-<header class="hero">
-  <div class="wrap hero-inner">
-    <span class="eyebrow">A Podcast · In Production</span>
-    <h1>Love <em>and</em> Let Live</h1>
-    <p class="tagline">Is there more that brings us together than divides us? And what happens if the thing we call God is love? I don't know. I never will. Let's ask anyway.</p>
-    <div class="btn-row">
-      <a href="map.html" class="btn btn-primary" id="enter-map">Enter the Map</a>
-      <a href="#notify" class="btn btn-outline">Tell Me When It Starts</a>
-    </div>
-    <a href="#what" class="scroll-cue">What is this? ↓</a>
-  </div>
+  <div class="mark">Love <span>&amp;</span> Let Live</div>
 </header>
 
-<!-- ============ WHAT THIS IS ============
-     The gentlest possible on-ramp. A first-time visitor should be able to stop
-     reading after the first sentence and still know what they've landed on. -->
-<section class="what" id="what">
-  <div class="wrap narrow">
-    <span class="eyebrow">What This Is</span>
-    <h2 style="font-size:clamp(30px,4vw,42px);margin:14px 0 28px;">A podcast about what people believe, and why.</h2>
-
-    <p class="lead">Not a show that tells you what it found. A show that admits it hasn't — and goes looking anyway, one tradition at a time, asking the people who hold them what it actually looks like from the inside.</p>
-
-    <p>It's built on two questions, and it doesn't answer either of them:</p>
-
-    <div class="two-q">
-      <div>Is there more that brings us together than divides us?</div>
-      <div>And what happens if the thing we call God is love?</div>
-    </div>
-
-    <p>The plan is to follow those two as far as they go — through Christianity, through every other tradition and worldview on the map, and straight into the places that seem to refuse them. <strong>Nobody is being argued with, and nobody is being converted.</strong> The point is to understand what someone believes well enough that they'd recognise themselves in the description.</p>
-
-    <p class="status-note"><strong style="color:var(--text);font-weight:500;">Where it's up to:</strong> the first episodes are being recorded now, and nothing has been released yet. What's finished — and what's worth coming here for today — is the map.</p>
-  </div>
-</section>
-
-<!-- ============ THE MAP ============ -->
-<section class="mapcta">
-  <div class="wrap">
-    <span class="eyebrow">Open Now</span>
-    <h2>Find where you're standing.</h2>
-    <p>The show isn't a straight line, so it doesn't live on one. It lives on a map — a marker for every tradition and worldview this work passes through, and roads drawn between them wherever a question connects two.</p>
-    <p class="how">Pick the point that's closest to where you already stand. The world turns to face it, and the roads out of it light up — each one labelled with the thread it shares with somewhere else. It takes about a minute, and there's no wrong place to start.</p>
-    <a href="map.html" class="btn btn-primary">Enter the Map</a>
-  </div>
-</section>
-
-<!-- ============ WHY ============
-     Bill's note: the credo was doing two jobs and reading as neither. Here it
-     is one job — the show's standing position — and it no longer claims to be
-     an episode you're supposed to have listened to first. -->
-<section class="why" id="why">
-  <div class="wrap">
-    <div class="section-head" style="margin-bottom:40px;">
-      <span class="eyebrow">Why It's Made This Way</span>
-      <h2>The one thing held without qualification.</h2>
-    </div>
-    <div class="quote">"No man knows the truth, and no man will, this side of death. Not this host. Not any tradition examined on this show."</div>
-    <div class="attrib">From the Opening Credo</div>
-    <div class="narrow">
-      <p>Most shows about God open by telling you what they found. This one opens by admitting it hasn't, and that it isn't going to. That isn't modesty or a hedge — it's the ground rule the whole thing is built on, and everything said afterwards can be measured against it.</p>
-      <p>Which means this show will get things wrong, out loud, on the record. Not as an accident to be apologised for later — as the expected condition of asking questions nobody can answer. <strong>When it happens, say so:</strong> <a href="mailto:hello@loveandletlive.com">hello@loveandletlive.com</a>. Being corrected is the show working, not the show failing.</p>
-      <p style="margin-bottom:0;">There's more of the reasoning, and where it came from, <a href="about.html">on the About page</a>.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ============ WHAT'S COMING ============ -->
-<section id="coming">
-  <div class="wrap">
-    <div class="section-head">
-      <span class="eyebrow">What's Coming</span>
-      <h2>The opening run</h2>
-      <p>The first several episodes are already laid out — the background, and the ground everything after it stands on. Nothing is released yet. These are the two being made now.</p>
-    </div>
-
-    <!-- PLAYER SLOT — invisible until TRANSISTOR is filled in at the bottom of
-         the file. Do not replace this with a placeholder; an empty play button
-         is exactly the thing this page was rebuilt to remove. -->
-    <div class="player" id="player-slot" hidden></div>
-    <div class="subs" id="subs" hidden>
-      <span class="subs-label">Also on</span>
-      <a id="sub-apple" href="#" target="_blank" rel="noopener">Apple Podcasts</a>
-      <a id="sub-spotify" href="#" target="_blank" rel="noopener">Spotify</a>
-      <a id="sub-youtube" href="#" target="_blank" rel="noopener">YouTube Music</a>
-      <a id="sub-rss" href="#" target="_blank" rel="noopener">RSS</a>
-    </div>
-
-    <div>
-      <div class="ep">
-        <div class="ep-num">01</div>
-        <div>
-          <div class="ep-title">Terms and Conditions</div>
-          <div class="ep-desc">Every other podcast about God tells you what it found. This one opens by admitting it hasn't. Ground rules, and the two questions. No refunds.</div>
-        </div>
-        <div class="ep-status status-soon">In Production</div>
-      </div>
-      <div class="ep">
-        <div class="ep-num">02</div>
-        <div>
-          <div class="ep-title">The Most Important Meal of the Day</div>
-          <div class="ep-desc">The dark years, and two kids who wanted breakfast on an entirely unremarkable morning. One Tuesday, no revelations.</div>
-        </div>
-        <div class="ep-status status-soon">In Production</div>
-      </div>
-    </div>
-
-    <p class="ep-after">The rest of the opening run carries on from there — the long stretch of searching that followed, what came out of it, and how all of it arrived where it stands today. Only once that groundwork is down does the map open properly, and from that point where the show goes next stops being entirely up to me.</p>
-  </div>
-</section>
-
-<!-- ============ NOTIFY ============ -->
-<section class="notify" id="notify">
-  <div class="wrap">
-    <span class="eyebrow">No Episodes Yet</span>
-    <h2>Know when the first one lands.</h2>
-    <p>One email when Episode 1 is out. Not a newsletter, not a schedule to keep up with — just the thing you came here for, once it exists.</p>
-
-    <form class="notify-form" id="notify-form">
-      <input id="notify-email" name="email" type="email" required
-             autocomplete="email" placeholder="you@example.com"
-             aria-label="Your email address">
-      <button type="submit" id="notify-send">Tell Me</button>
-    </form>
-    <div class="notify-msg" id="notify-msg" hidden></div>
-    <p class="notify-fine">There's one confirmation email straight away — click the link in it, or you're not actually on the list. After that, silence until Episode 1. Unsubscribe in a click, and your address is never passed on to anyone.</p>
-  </div>
-</section>
-
-<footer>
-  <div class="wrap foot-inner">
-    <div class="logo" style="font-size:16px;">Love <span>&amp;</span> Let Live</div>
-    <div class="foot-links">
-      <a href="map.html">The Map</a>
-      <a href="#what">What This Is</a>
-      <a href="about.html">About</a>
-      <a href="mailto:hello@loveandletlive.com">Contact</a>
-    </div>
-    <div class="foot-support">Questions, disagreements, or something you'd like asked on the show — <a href="mailto:hello@loveandletlive.com">hello@loveandletlive.com</a>. Every one gets read.</div>
-    <div class="foot-copy">© 2026 Love and Let Live. Is there more that brings us together than divides us?</div>
-  </div>
-</footer>
+<!-- Two small doors, and nothing else. The page asks a question and gets
+     out of the way; anyone who wants more has to want it. No explanation
+     here on purpose — that lives on about.html. -->
+<nav class="doors">
+  <a href="map.html">The Map</a>
+  <span class="dot">·</span>
+  <a href="ask.html">The Line</a>
+  <span class="dot">·</span>
+  <a href="about.html">What This Is</a>
+</nav>
 
 <script>
   /* ------------------------------------------------------------------
-     TRANSISTOR — the config that switches the player on.
+     THE QUESTIONS
 
-     Until one of these is set, the player and subscribe row stay HIDDEN
-     rather than showing a placeholder. That is deliberate: the page should
-     never advertise audio that doesn't exist.
-
-     showId    — the show's embed id. Set this once, before recording, and
-                 launch day needs NO site edit at all: the show player always
-                 renders the latest episode, and at launch that is Episode 1.
-                 Found at Transistor > Show > Share/Embed; the src reads
-                 https://share.transistor.fm/s/abc12345 — you want 'abc12345'.
-
-     episode1  — optional, and it WINS over showId when set. Use it after
-                 Episode 1 is live to pin this slot to Episode 1 permanently.
-                 Same place, but Episode > Share/Embed: .../e/abc12345.
-
-     Subscribe links render only when non-empty, so Apple/Spotify/YouTube can
-     be added one at a time as each directory approves the feed.
+     Rules for anything added here, learned the hard way:
+       - Ask about a PERSON, not a concept. "What are you holding on to"
+         is an idea and lands soft; "who's missing from your table" is a
+         chair, and lands.
+       - Never tell the reader they were wrong. The question points at an
+         absence they already feel; it does not assign blame for it.
+       - No statement of belief. The credo asserted as fact on the front
+         page is a truth-claim the credo itself forbids — it lives on the
+         About page, framed as where Blair stands, not here.
+       - The LAST one opens a door. The sequence earns its name by ending
+         somewhere hopeful rather than on the wound.
      ------------------------------------------------------------------ */
-  const TRANSISTOR = {
-    showId:   '',   // show embed id
-    episode1: '',   // ON LAUNCH DAY: put 'f7231c81' here. That is the real
-                    // embed id for Episode 1 "Terms and Conditions", already
-                    // reserved in Transistor. Deliberately left empty until
-                    // the episode is published — the embed is live NOW and
-                    // would render a play button with no audio behind it.
-    apple:    '',   // https://podcasts.apple.com/…
-    spotify:  '',   // https://open.spotify.com/show/…
-    youtube:  '',   // https://music.youtube.com/…
-    rss:      ''    // https://feeds.transistor.fm/love-and-let-live
-                    // ^ real and working, but empty until Ep 1 publishes
-  };
+  const QUESTIONS = [
+    "Who's missing from your table?",
+    "Whose name do you not say anymore?",
+    "Who stopped telling you things?",
+    "Who did you used to call first?",
+    "Who do you talk about but not to?",
+    "Whose number is still in your phone?",
+    "Who would come back, <em>if you asked?</em>"
+  ];
 
-  /* ------------------------------------------------------------------
-     NOTIFY — the email list.
-
-     GitHub Pages is static, so this needs a third party to receive the
-     address. Paste the form endpoint into `endpoint` and the box starts
-     posting for real. Both of these give you one on a free plan:
-
-       Buttondown — https://buttondown.com/api/emails/embed-subscribe/USERNAME
-       Kit         — the form action URL from the raw HTML embed
-
-     Left empty, the box still works: it opens a pre-addressed email to
-     hello@loveandletlive.com instead. Slightly clunkier for the visitor,
-     but it never silently swallows an address, which is the failure mode
-     that actually matters.
-     ------------------------------------------------------------------ */
-  const NOTIFY = {
-    // Kit form "Site — Notify on Episode 1" (form id 9745133), created 2026-07-30.
-    // Double opt-in is ON in Kit, so a subscriber isn't real until they click
-    // the confirmation email — which is why the message below says to go and
-    // check for it rather than declaring them subscribed.
-    endpoint: 'https://app.kit.com/forms/9745133/subscriptions',
-    field:    'email_address',             // Kit's field name; Buttondown uses 'email'
-    mailto:   'hello@loveandletlive.com'   // fallback if the endpoint is ever cleared
-  };
+  const HOLD = 5200;   // ms a question stays at full opacity
+  const FADE = 1500;   // ms cross-fade, matches the CSS transition
 
   (function(){
-    /* ---------- player ---------- */
-    var src = TRANSISTOR.episode1
-      ? 'https://share.transistor.fm/e/' + TRANSISTOR.episode1
-      : (TRANSISTOR.showId ? 'https://share.transistor.fm/s/' + TRANSISTOR.showId : '');
-
-    if (src) {
-      var slot = document.getElementById('player-slot');
-      var f = document.createElement('iframe');
-      f.src = src;
-      f.width = '100%';
-      f.height = TRANSISTOR.episode1 ? '180' : '350';
-      f.frameBorder = '0';
-      f.scrolling = 'no';
-      f.loading = 'lazy';
-      f.title = TRANSISTOR.episode1
-        ? 'Love and Let Live — Episode 1: Terms and Conditions'
-        : 'Love and Let Live — episode player';
-      f.setAttribute('seamless','');
-      slot.appendChild(f);
-      slot.hidden = false;
-    }
-
-    /* ---------- subscribe links ---------- */
-    var map = { 'sub-apple':'apple', 'sub-spotify':'spotify',
-                'sub-youtube':'youtube', 'sub-rss':'rss' };
-    var any = false;
-    Object.keys(map).forEach(function(id){
-      var el = document.getElementById(id), url = TRANSISTOR[map[id]];
-      if (url) { el.href = url; any = true; } else { el.hidden = true; }
-    });
-    if (any) document.getElementById('subs').hidden = false;
-
-    /* ---------- notify ---------- */
-    var form = document.getElementById('notify-form'),
-        input = document.getElementById('notify-email'),
-        send  = document.getElementById('notify-send'),
-        msg   = document.getElementById('notify-msg');
-
-    function say(text){ msg.textContent = text; msg.hidden = false; }
-
-    form.addEventListener('submit', function(e){
-      e.preventDefault();
-      var addr = input.value.trim();
-      if (!addr) return;
-
-      if (!NOTIFY.endpoint) {
-        // No list service yet — hand it to their mail client rather than
-        // pretending it was captured.
-        window.location.href = 'mailto:' + NOTIFY.mailto
-          + '?subject=' + encodeURIComponent('Tell me when Episode 1 lands')
-          + '&body='    + encodeURIComponent(
-              'Please let me know when the first episode is out.\n\n' + addr + '\n');
-        say("Opening your email app — send that message and you're on the list.");
-        return;
-      }
-
-      send.disabled = true;
-      say('…');
-
-      /* Kit's endpoint speaks JSON and sends CORS headers, so try that first —
-         it's the only version where a real failure is visible to the visitor.
-         If the browser blocks it, fall back to an opaque no-cors form post,
-         which almost always lands but can't be read. Never claim success in
-         the fallback path beyond "check your email", because the confirmation
-         mail is what actually tells them it worked. */
-      var done = function(){
-        form.reset();
-        say('Now check your email and click the confirmation link — you’re not on the list until you do.');
-      };
-
-      fetch(NOTIFY.endpoint, {
-        method:'POST',
-        headers:{'Content-Type':'application/json','Accept':'application/json'},
-        body: JSON.stringify({ email_address: addr })
-      })
-      .then(function(res){
-        if (!res.ok) throw new Error('HTTP ' + res.status);
-        done();
-      })
-      .catch(function(){
-        var body = new FormData();
-        body.append(NOTIFY.field, addr);
-        return fetch(NOTIFY.endpoint, { method:'POST', body:body, mode:'no-cors' })
-          .then(done)
-          .catch(function(){
-            say('That didn’t go through. Email ' + NOTIFY.mailto + ' and you’ll be added by hand.');
-          });
-      })
-      .finally(function(){ send.disabled = false; });
+    var box = document.getElementById('asks');
+    var nodes = QUESTIONS.map(function(q){
+      var d = document.createElement('div');
+      d.className = 'ask';
+      d.innerHTML = q;
+      box.appendChild(d);
+      return d;
     });
 
-    /* Marks the credo as seen. The map's gate reads this flag when it's
-       switched on; harmless while GATE_ENABLED is false. */
-    var em = document.getElementById('enter-map');
-    if (em) em.addEventListener('click', function(){
-      try { localStorage.setItem('lll_credo_complete','1'); } catch(e){}
-    });
+    nodes[0].classList.add('on');
+
+    // Motion off: leave the first question up and stop. Don't cycle text at
+    // someone who asked the browser to hold still.
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    var i = 0;
+    setInterval(function(){
+      nodes[i].classList.remove('on');
+      i = (i + 1) % nodes.length;
+      // wait out the fade so the two never overlap at full strength
+      setTimeout(function(){ nodes[i].classList.add('on'); }, FADE * 0.55);
+    }, HOLD + FADE);
   })();
 </script>
 </body>

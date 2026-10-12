@@ -3,12 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>About — Love and Let Live</title>
-<meta name="description" content="Where Love and Let Live came from, what it's actually doing, and the two words worth having before you start.">
+<title>What This Is — Love and Let Live</title>
+<meta name="description" content="Nobody knows. Not the physicist, not the priest, not your mother. That isn't an argument against believing something — only against being so certain about it that you lose people over it.">
 <link rel="canonical" href="https://loveandletlive.com/about.html">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-<meta property="og:title" content="About — Love and Let Live">
-<meta property="og:description" content="Where the show came from, what it's actually doing, and why the searching is the thing rather than the arriving.">
+<meta property="og:title" content="What This Is — Love and Let Live">
+<meta property="og:description" content="Nobody knows. That isn't an argument against believing something. It's an argument against losing people over it.">
 <meta property="og:image" content="https://loveandletlive.com/assets/social-card.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -16,12 +16,12 @@
 <meta property="og:site_name" content="Love and Let Live">
 <meta property="og:type" content="article">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="About — Love and Let Live">
-<meta name="twitter:description" content="Where the show came from, and what it's actually doing.">
+<meta name="twitter:title" content="What This Is — Love and Let Live">
+<meta name="twitter:description" content="Nobody knows. That isn't an argument against believing something. It's an argument against losing people over it.">
 <meta name="twitter:image" content="https://loveandletlive.com/assets/social-card.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   :root{
     --bg:#04070f;
@@ -32,211 +32,202 @@
     --text:#eef0f5;
     --dim:#8b98b6;
     --line:rgba(240,185,77,0.18);
-    --max:1080px;
   }
   *{box-sizing:border-box;margin:0;padding:0;}
   html{scroll-behavior:smooth;}
   body{
     background:var(--bg);color:var(--text);
-    font-family:'Inter',sans-serif;font-weight:300;line-height:1.68;
+    font-family:'Inter',sans-serif;font-weight:300;line-height:1.72;
     -webkit-font-smoothing:antialiased;
   }
-  h1,h2,h3{font-family:'Cormorant Garamond',serif;font-weight:500;letter-spacing:0.01em;}
+  h1,h2,h3{font-family:'Cormorant Garamond',serif;font-weight:400;letter-spacing:0.01em;}
   a{color:inherit;text-decoration:none;}
-  .wrap{max-width:var(--max);margin:0 auto;padding:0 28px;}
-  .narrow{max-width:660px;margin:0 auto;}
-  .eyebrow{font-size:11px;letter-spacing:0.28em;text-transform:uppercase;color:var(--gold);font-weight:500;}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 28px;}
+  .narrow{max-width:620px;margin:0 auto;}
+  .eyebrow{font-size:10.5px;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);font-weight:500;}
 
-  nav{
-    position:sticky;top:0;z-index:50;
-    background:rgba(4,7,15,0.86);backdrop-filter:blur(10px);
-    border-bottom:1px solid var(--line);
+  .topbar{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:22px 28px;border-bottom:1px solid rgba(240,185,77,0.1);
   }
-  nav .wrap{display:flex;align-items:center;justify-content:space-between;height:68px;}
-  .logo{font-family:'Cormorant Garamond',serif;font-size:19px;letter-spacing:0.14em;text-transform:uppercase;}
-  .logo span{color:var(--gold);}
-  .navlinks{display:flex;gap:32px;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:var(--dim);}
-  .navlinks a:hover{color:var(--gold-soft);}
-  @media (max-width:700px){
-    .navlinks{gap:0;}
-    .navlinks a{display:none;}
-    .navlinks a.keep{display:inline;color:var(--gold-soft);}
+  .brand{
+    font-family:'Cormorant Garamond',serif;font-size:15px;
+    letter-spacing:0.22em;text-transform:uppercase;color:rgba(240,185,77,0.8);
   }
+  .brand span{color:var(--gold);}
+  .toplink{font-size:10.5px;letter-spacing:0.2em;text-transform:uppercase;color:rgba(139,152,182,0.6);}
+  .toplink:hover{color:var(--gold-soft);}
 
-  .page-head{
-    padding:96px 0 64px;text-align:center;
-    border-bottom:1px solid var(--line);
-  }
-  .page-head h1{font-size:clamp(38px,6vw,64px);line-height:1.06;margin:16px 0 20px;}
-  .page-head p{color:var(--dim);font-size:17px;max-width:520px;margin:0 auto;}
+  .page-head{padding:96px 0 10px;text-align:center;}
+  .page-head h1{font-size:clamp(34px,5.6vw,56px);line-height:1.1;margin-top:18px;}
 
-  section{padding:80px 0;}
-  section + section{border-top:1px solid rgba(240,185,77,0.09);}
-  .sec-head{margin-bottom:34px;}
-  .sec-head h2{font-size:clamp(27px,3.6vw,37px);margin-top:12px;}
-  p.body{color:var(--dim);font-size:16.5px;margin-bottom:22px;}
+  section{padding:64px 0;}
+  section + section{border-top:1px solid rgba(240,185,77,0.08);}
+  .sec-head{margin-bottom:28px;}
+  .sec-head h2{font-size:clamp(25px,3.4vw,34px);margin-top:11px;}
+  p.body{color:var(--dim);font-size:17px;margin-bottom:21px;}
   p.body strong{color:var(--text);font-weight:500;}
   p.body em{color:var(--gold-soft);font-style:italic;}
   p.body a{color:var(--gold-soft);border-bottom:1px dotted rgba(240,185,77,0.45);}
+  p.lead{color:var(--text);font-size:21px;line-height:1.56;margin-bottom:26px;}
+
   .pull{
     font-family:'Cormorant Garamond',serif;font-style:italic;
-    font-size:clamp(21px,2.8vw,27px);line-height:1.44;color:var(--gold-soft);
-    border-left:2px solid var(--gold);padding-left:24px;margin:34px 0;
+    font-size:clamp(21px,2.9vw,28px);line-height:1.42;color:var(--gold-soft);
+    border-left:2px solid var(--gold);padding-left:24px;margin:30px 0;
   }
 
-  /* the two words */
-  .terms{background:var(--panel);}
   .term{
-    background:var(--panel-2);border:1px solid var(--line);border-radius:6px;
-    padding:32px 34px;margin-bottom:16px;
+    background:var(--panel-2);border:1px solid var(--line);border-radius:5px;
+    padding:26px 28px;margin-bottom:14px;
   }
-  .term h3{font-size:26px;margin-bottom:4px;}
-  .term .say{
-    font-size:11px;letter-spacing:0.14em;text-transform:uppercase;
-    color:rgba(139,152,182,0.7);margin-bottom:16px;
-  }
-  .term p{color:var(--dim);font-size:15.5px;margin-bottom:14px;}
+  .term h3{font-size:23px;margin-bottom:3px;}
+  .term .say{font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(139,152,182,0.65);margin-bottom:13px;}
+  .term p{color:var(--dim);font-size:15px;margin-bottom:11px;}
   .term p:last-child{margin-bottom:0;}
-  .term .asks{
-    font-family:'Cormorant Garamond',serif;font-style:italic;font-size:19px;
-    color:var(--gold-soft);margin:0 0 14px;
-  }
-  .credit{
-    margin-top:26px;font-size:14px;color:rgba(139,152,182,0.7);
-    border-top:1px solid rgba(240,185,77,0.1);padding-top:20px;
-  }
+  .term .asks{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:18px;color:var(--gold-soft);margin:0 0 12px;}
 
+  .credit{
+    margin-top:24px;font-size:14px;color:rgba(139,152,182,0.72);
+    border-top:1px solid rgba(240,185,77,0.1);padding-top:18px;
+  }
+  .credit a{color:var(--gold-soft);}
+
+  .closing{text-align:center;background:var(--panel);}
+  .closing h2{font-size:clamp(24px,3.4vw,33px);margin:12px 0 18px;}
+  .closing p{color:var(--dim);font-size:16px;max-width:520px;margin:0 auto 30px;}
   .backlink{
-    display:inline-flex;align-items:center;gap:9px;padding:14px 28px;
+    display:inline-flex;align-items:center;gap:9px;padding:13px 27px;
     background:var(--gold);color:#12101a;font-weight:600;
-    font-size:12px;letter-spacing:0.12em;text-transform:uppercase;border-radius:2px;
+    font-size:11.5px;letter-spacing:0.12em;text-transform:uppercase;border-radius:2px;
   }
   .backlink:hover{background:var(--gold-soft);}
-  .closing{text-align:center;background:var(--panel);}
-  .closing h2{font-size:clamp(26px,3.6vw,36px);margin:14px 0 20px;}
-  .closing p{color:var(--dim);font-size:16px;max-width:520px;margin:0 auto 32px;}
+  .alt{margin-top:20px;font-size:14px;color:rgba(139,152,182,0.72);}
+  .alt a{color:var(--gold-soft);border-bottom:1px dotted rgba(240,185,77,0.45);}
 
-  footer{padding:58px 0 40px;border-top:1px solid var(--line);}
-  .foot-inner{display:flex;flex-direction:column;align-items:center;gap:20px;text-align:center;}
-  .foot-links{display:flex;gap:24px;flex-wrap:wrap;justify-content:center;font-size:12px;color:var(--dim);text-transform:uppercase;letter-spacing:0.1em;}
+  footer{padding:36px 0 44px;border-top:1px solid rgba(240,185,77,0.1);text-align:center;}
+  .foot-links{
+    display:flex;gap:22px;justify-content:center;flex-wrap:wrap;
+    font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(139,152,182,0.6);
+  }
   .foot-links a:hover{color:var(--gold-soft);}
-  .foot-support{font-size:13px;color:rgba(139,152,182,0.72);max-width:520px;}
-  .foot-support a{color:var(--gold-soft);border-bottom:1px dotted rgba(240,185,77,0.45);}
-  .foot-copy{font-size:12px;color:rgba(139,152,182,0.4);}
+  .foot-support{margin-top:18px;font-size:13px;color:rgba(139,152,182,0.6);max-width:520px;margin-left:auto;margin-right:auto;}
+  .foot-support a{color:var(--gold-soft);border-bottom:1px dotted rgba(240,185,77,0.4);}
+  .foot-copy{margin-top:16px;font-size:11.5px;color:rgba(139,152,182,0.32);}
 </style>
 </head>
 <body>
 
-<nav>
-  <div class="wrap">
-    <a class="logo" href="index.html">Love <span>&amp;</span> Let Live</a>
-    <div class="navlinks">
-      <a href="index.html#what">What This Is</a>
-      <a class="keep" href="map.html">The Map</a>
-      <a href="index.html#coming">What's Coming</a>
-      <a href="about.html" style="color:var(--gold-soft);">About</a>
-    </div>
-  </div>
-</nav>
+<div class="topbar">
+  <a class="brand" href="index.html">Love <span>&amp;</span> Let Live</a>
+  <a class="toplink" href="index.html">← Back</a>
+</div>
 
 <header class="page-head">
   <div class="wrap">
-    <span class="eyebrow">About</span>
-    <h1>Where this came from</h1>
-    <p>The longer version. If you only wanted the short one, it's <a href="index.html#what" style="color:var(--gold-soft);border-bottom:1px dotted rgba(240,185,77,0.45);">on the front page</a>.</p>
+    <span class="eyebrow">What This Is</span>
+    <h1>Nobody knows.</h1>
   </div>
 </header>
 
-<!-- ============ THE MOMENT ============ -->
+<!-- ============ WHAT THIS IS ============
+     Deliberately not God-first. The old version opened "everyone you've ever
+     disagreed with about God", which sorted the reader into believer or not
+     inside the first line and quietly excluded the scientist, the atheist and
+     the person who's never thought about it. The premise doesn't need God —
+     it's about certainty, and certainty belongs to everyone. -->
 <section>
   <div class="wrap narrow">
-    <div class="sec-head">
-      <span class="eyebrow">The Moment</span>
-      <h2>Love, used as a weapon</h2>
-    </div>
-    <p class="body">This didn't start as a podcast. It started as a reckoning.</p>
-    <p class="body">There was a moment when I told my wife, with total conviction and no doubt at all, that she was going to hell. I believed it. I thought I was doing the loving thing — that the most caring act available to me was to tell her the truth about where she was heading. In my own words since: I used love <strong>as a weapon</strong>.</p>
-    <p class="body">I've had a long time to sit with how that was possible. The uncomfortable part isn't that I was cruel. It's that I wasn't. I was sincere, and certain, and the certainty was the problem. Everything that went wrong went wrong downstream of being sure.</p>
-    <p class="body">And what broke that day wasn't her faith. <strong>It was mine.</strong> Not all at once, and not in the way anyone would have noticed from outside — but the moment I heard myself say it, something underneath the belief came loose. If this is what being right sounds like, I thought, then I need to go back and look at how I got here.</p>
-    <div class="pull">I didn't come out of that with an answer. I came out of it having to ask the question again from the beginning.</div>
-    <p class="body">What followed was years of it. Reading, arguing, sitting in other people's traditions and asking them what it looks like from inside. Not a crisis — a long, slow, mostly unglamorous re-examination that is still going.</p>
+    <p class="lead">Not about the big things. Not with certainty. The physicist doesn't know. The priest doesn't know. Your mother doesn't know.</p>
+
+    <p class="body">That isn't an argument against believing something. Believe it completely. Most people do, and the ones who say they don't usually believe something just as firmly in the other direction.</p>
+
+    <p class="body"><strong>It's an argument against the certainty.</strong> Against being so sure you're right that you'd spend a person over it — a brother, a parent, a friend of thirty years, someone who used to sit at your table. It's rarely the belief that costs you someone. It's the certainty wrapped around it.</p>
+
+    <p class="body">And it isn't only religion. It's politics, and money, and how to raise the kids, and the thing that got said at the funeral. The particulars change. What tends not to is two people, both sure, neither of whom can really know — and something between them that quietly stops surviving the argument.</p>
+
+    <div class="pull">I don’t know what fixes this.<br>I know that being right about it hasn’t.</div>
+
+    <p class="body">That's the whole of it. <strong>Love, and let live.</strong> Keep what you believe — hold the certainty loosely. And stop treating the person across the table as a problem to be solved.</p>
+
+    <p class="body">There is nothing here to sign up for and nothing to join. Nobody is collecting your name or your address. There's <a href="map.html">a map</a> if you want to see where the traditions and worldviews seem to touch, and <a href="ask.html">a phone that nobody answers</a> if there's something you've never been able to say out loud. That's all this is, for now.</p>
   </div>
 </section>
 
-<!-- ============ THE PREMISE ============ -->
+<!-- ============ WHY IT EXISTS ============
+     The "little bulb" — not a memoir. Two sentences of standing, no scene,
+     no names, no years. Just enough that the questions on the front page
+     are obviously asked by someone who has paid for them, rather than by
+     an anonymous account dispensing wisdom. Resist expanding this. -->
 <section>
   <div class="wrap narrow">
     <div class="sec-head">
-      <span class="eyebrow">Where That Got To — Recently</span>
-      <h2>What happens if the thing we call God is love?</h2>
+      <span class="eyebrow">Why It Exists</span>
+      <h2>Someone had to go first</h2>
     </div>
-    <p class="body">I want to be careful here, because it would make a tidier story to say this is the question I've carried since that morning. It isn't. <strong>This one is new.</strong> It arrived at the far end of a long journey, not at the start of it, and I've been sitting with it for a fraction of the time I spent getting to it.</p>
-    <p class="body">Not love as one attribute among many — not a God who is powerful and just and also loving. Love as <strong>the whole of it</strong>. The entire substance of the thing.</p>
-    <p class="body">It's a simple premise and it turns out to be enormously demanding, because you have to follow it everywhere. Through Jesus. Through every other tradition on the map. And straight into the passages and doctrines that seem to refuse it outright — the ones that are much easier to skip. The show doesn't skip them. If the premise breaks there, then it breaks, and that's worth knowing.</p>
-    <p class="body">That premise is <strong>a point on the map, not the destination</strong>. It's where I'm standing today, held loosely, open to revision the moment something more convincing turns up. I'd rather be moved than right — and given how recently I got here, being moved seems more likely than not.</p>
+    <p class="body">I was certain once, about something I could not possibly have known, and I said so out loud to someone I loved. I thought I was being kind. It cost me more than I understood at the time, and it took years to work out that the problem was never what I believed — it was how sure I was of it.</p>
+    <p class="body">That's the entire reason this exists. Not as a lesson I'm qualified to teach. As the thing I'd want someone to have asked me, earlier, before I was so sure.</p>
   </div>
 </section>
 
-<!-- ============ WHY BOTHER ============ -->
+<!-- ============ WHERE I STAND ============ -->
 <section>
   <div class="wrap narrow">
     <div class="sec-head">
-      <span class="eyebrow">The Fair Objection</span>
-      <h2>If the answer can't be reached, why ask?</h2>
+      <span class="eyebrow">Where I Stand Today</span>
+      <h2>The one thing held without qualification</h2>
     </div>
-    <p class="body">Because the searching is the thing, not the arriving.</p>
-    <p class="body">Traditions built thousands of miles and hundreds of years apart, with no way of reaching each other, seem on the surface to have arrived at something that resembles each other. Not the same thing — the differences are real and this show has no interest in flattening them. But there's a family resemblance in places there's no good reason for one to be, and that is worth going to look at whether or not it ever resolves.</p>
-    <p class="body">And the object of the search isn't really truth. <strong>It's people.</strong> What they believe, and why. Not to talk anyone out of it, and not to be talked out of anything either. Anyone is welcome to come along while that continues.</p>
+    <div class="pull">No one knows the truth, and no one will, this side of death.</div>
+    <p class="body">That sentence isn't on the front page, and that's deliberate — stated as a headline it becomes exactly the thing it warns against, a certainty announced. <strong>It isn't a fact anyone is being asked to accept.</strong> It's a position, held today, and by its own logic it could be wrong.</p>
+    <p class="body">Which is the "let live." Not that beliefs don't matter — they matter enormously. Only that your conviction about ultimate truth isn't a hill worth losing a person on.</p>
   </div>
 </section>
 
 <!-- ============ TWO WORDS ============
-     Bill's suggestion, in the place where it earns its keep: not a glossary
-     page shipped before anyone's listening, but the two words that describe
-     what the show is structurally doing. Framed in the show's terms rather
-     than the research-methodology terms the source document used. -->
-<section class="terms">
+     Kept through the trim because it's philosophy rather than theology, so
+     it serves the scientist as readily as the believer — and because the
+     person who suggested it mattered. -->
+<section>
   <div class="wrap narrow">
     <div class="sec-head">
       <span class="eyebrow">Two Words Worth Having</span>
       <h2>Ontology and epistemology</h2>
     </div>
-    <p class="body">These will come up. They sound like gatekeeping and they aren't — they're just the names for the two halves of every argument anyone has ever had about God, and having the names makes the arguments much easier to follow.</p>
+    <p class="body">These two sound like gatekeeping and they aren't. They're just the names for the two halves of every argument anyone has ever had about anything that matters, and having the names makes the arguments much easier to follow.</p>
 
     <div class="term">
       <h3>Ontology</h3>
       <div class="say">on-TOL-uh-jee</div>
       <p class="asks">What exists? What is actually there?</p>
-      <p>The study of being. Not how you'd find out, not whether you could prove it — just what the furniture of reality consists of. Whether there's a God, whether there's a soul, whether the world is one substance or two.</p>
-      <p><strong style="color:var(--text);font-weight:500;">On this show:</strong> <em>what happens if the thing we call God is love?</em> is an ontological question. It's a claim about what's there.</p>
+      <p>The study of being. Not how you'd find out, not whether you could prove it — just what reality is made of. Whether there's a God, whether there's a soul, whether the world is one substance or two.</p>
     </div>
 
     <div class="term">
       <h3>Epistemology</h3>
       <div class="say">ep-ist-uh-MOL-uh-jee</div>
       <p class="asks">How do we know? And how would we know we knew?</p>
-      <p>The study of knowledge — what counts as knowing something, what justifies a belief, and where the limits are. Two people can agree completely about what exists and still disagree violently about whether anyone is in a position to say so.</p>
-      <p><strong style="color:var(--text);font-weight:500;">On this show:</strong> <em>no man knows the truth, and no man will, this side of death</em> is an epistemological claim. It's not about God. It's about us, and our equipment.</p>
+      <p>The study of knowledge — what counts as knowing a thing, what justifies a belief, where the limits sit. Two people can agree completely about what exists and still disagree violently about whether anyone is in a position to say so.</p>
     </div>
 
-    <p class="body" style="margin-top:30px;">Which is the whole show in one sentence, once you have both words. <strong>It makes an ontological claim and then immediately disqualifies itself epistemologically — and keeps going anyway.</strong> That looks like a contradiction and it isn't. It's what it's like to believe something honestly. Most people you'll ever meet are doing exactly this; they just don't narrate it.</p>
+    <p class="body" style="margin-top:26px;">Almost every fight that ends a friendship is the second one wearing the first one's clothes. <strong>It looks like a disagreement about what's true. It's usually a disagreement about who's entitled to be sure.</strong></p>
 
-    <p class="body">It's also why the certainty in that first story was the dangerous part. I hadn't got the ontology wrong so much as I'd forgotten there was an epistemology at all.</p>
-
-    <div class="credit">These two are here because <strong style="color:var(--text);font-weight:500;">someone special to me</strong> read an early draft of this site and told me, kindly and correctly, that a show like this has no business using words like these without defining them — and that plenty of people would be shut out before they'd started. He spent a career writing and editing, and he sent the first two entries himself rather than just pointing at the problem. He'd want it noted that he offered them as suggestions I was free to ignore. I didn't.<br><br>If there's another word used here that closes a door rather than opens one, that's a fault of the show and worth telling me about — <a href="mailto:hello@loveandletlive.com" style="color:var(--gold-soft);">hello@loveandletlive.com</a>.</div>
+    <div class="credit">These are here because <strong style="color:var(--text);font-weight:500;">someone special to me</strong> read an early draft of this site and said, kindly and correctly, that a site like this has no business using words like these without defining them — and that plenty of people would be shut out before they'd started. He spent a career writing and editing, and he sent the first two entries himself rather than just pointing at the problem. He'd want it noted that he offered them as suggestions I was free to ignore. I didn't.<br><br>If another word here closes a door rather than opens one, that's my fault and worth telling me about — <a href="mailto:hello@loveandletlive.com">hello@loveandletlive.com</a>.</div>
   </div>
 </section>
 
-<!-- ============ THE BOOK ============ -->
+<!-- ============ FOOTNOTE ============
+     Undated on purpose. Anyone who saw the site in its first form was
+     promised episodes; saying nothing would be dishonest, and "coming soon"
+     would be worse. -->
 <section>
   <div class="wrap narrow">
     <div class="sec-head">
-      <span class="eyebrow">There Is Also A Book</span>
-      <h2>The Crack in the Light</h2>
+      <span class="eyebrow">A Footnote</span>
+      <h2>There was going to be a podcast</h2>
     </div>
-    <p class="body">Somewhere in those years the searching turned into a manuscript. <em>The Crack in the Light</em> is where a lot of this got worked out the slow way, on paper, long before there was any thought of saying it out loud.</p>
-    <p class="body">It's written. <strong>Whether it ever gets published is a genuinely open question</strong> — I've not decided, and it may well sit in a drawer. It isn't for sale, there's nothing to pre-order, and there's no announcement coming that I know of. I mention it only because it's part of how the questions got their shape, and because it would be strange to leave out.</p>
-    <p class="body">If the show finds enough people who'd want to read it, that might change. That's a long way off, and it isn't a promise.</p>
+    <p class="body">If you found this site earlier in the year, it announced one. Episodes were written, a feed was set up, and the whole place was built as a waiting room for a show.</p>
+    <p class="body">There hasn't been time to record it the way it deserves, and a half-made version wasn't worth putting out. So it's paused — <strong>not cancelled, not coming soon, paused</strong>, with no date, because that's more honest than keeping a countdown running on something nobody can commit to.</p>
+    <p class="body">The wanting to have the conversation never went anywhere. It's just starting where it actually lives: in person, locally, one at a time. <em>Not by preaching, but by being.</em></p>
   </div>
 </section>
 
@@ -245,22 +236,22 @@
   <div class="wrap">
     <span class="eyebrow">Where To Next</span>
     <h2>Find where you're standing.</h2>
-    <p>The map is the part that's finished. Pick the point closest to where you already stand and see what roads run out of it.</p>
+    <p>The map holds the traditions and worldviews this passes through, and the threads that seem to run between them. Start from wherever you already are — there's no centre and no wrong answer.</p>
     <a href="map.html" class="backlink">Enter the Map</a>
+    <div class="alt">or <a href="ask.html">say the thing you've never said</a></div>
   </div>
 </section>
 
 <footer>
-  <div class="wrap foot-inner">
-    <div class="logo" style="font-size:16px;">Love <span>&amp;</span> Let Live</div>
+  <div class="wrap">
     <div class="foot-links">
+      <a href="index.html">Home</a>
       <a href="map.html">The Map</a>
-      <a href="index.html#what">What This Is</a>
-      <a href="index.html#notify">Get Notified</a>
+      <a href="ask.html">The Line</a>
       <a href="mailto:hello@loveandletlive.com">Contact</a>
     </div>
-    <div class="foot-support">Questions, disagreements, or something you'd like asked on the show — <a href="mailto:hello@loveandletlive.com">hello@loveandletlive.com</a>. Every one gets read.</div>
-    <div class="foot-copy">© 2026 Love and Let Live. Is there more that brings us together than divides us?</div>
+    <div class="foot-support">Corrections, disagreements, or something here that's wrong — <a href="mailto:hello@loveandletlive.com">hello@loveandletlive.com</a>. Every one gets read. If you'd rather say it anonymously, <a href="ask.html">the line is open</a>.</div>
+    <div class="foot-copy">© 2026 Love and Let Live</div>
   </div>
 </footer>
 

@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Unanswered Line — Love and Let Live</title>
+<meta name="description" content="A phone that isn't connected. Ask the thing you've never been able to ask out loud. No reply, no account, and nothing recorded about you.">
+<link rel="canonical" href="https://loveandletlive.com/ask.html">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<meta property="og:title" content="The Unanswered Line">
+<meta property="og:description" content="Ask the thing you've never been able to ask out loud. Nobody answers. That's the point.">
+<meta property="og:image" content="https://loveandletlive.com/assets/social-card.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:url" content="https://loveandletlive.com/ask.html">
+<meta property="og:site_name" content="Love and Let Live">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The Unanswered Line">
+<meta name="twitter:description" content="Ask the thing you've never been able to ask out loud. Nobody answers. That's the point.">
+<meta name="twitter:image" content="https://loveandletlive.com/assets/social-card.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#04070f;
+    --panel:#0a1122;
+    --gold:#f0b94d;
+    --gold-soft:#ffd88a;
+    --text:#eef0f5;
+    --dim:#8b98b6;
+    --line:rgba(240,185,77,0.18);
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{
+    background:var(--bg);color:var(--text);
+    font-family:'Inter',sans-serif;font-weight:300;line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+    min-height:100vh;display:flex;flex-direction:column;
+  }
+  a{color:inherit;text-decoration:none;}
+
+  .topbar{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:22px 28px;border-bottom:1px solid rgba(240,185,77,0.1);
+  }
+  .brand{
+    font-family:'Cormorant Garamond',serif;font-size:15px;
+    letter-spacing:0.22em;text-transform:uppercase;color:rgba(240,185,77,0.8);
+  }
+  .brand span{color:var(--gold);}
+  .toplink{
+    font-size:10.5px;letter-spacing:0.2em;text-transform:uppercase;
+    color:rgba(139,152,182,0.6);
+  }
+  .toplink:hover{color:var(--gold-soft);}
+
+  main{flex:1;display:flex;align-items:center;justify-content:center;padding:64px 28px 48px;}
+  .box{width:100%;max-width:620px;}
+
+  .eyebrow{
+    display:block;font-size:10.5px;letter-spacing:0.3em;text-transform:uppercase;
+    color:var(--gold);font-weight:500;margin-bottom:16px;text-align:center;
+  }
+  h1{
+    font-family:'Cormorant Garamond',serif;font-weight:400;
+    font-size:clamp(32px,5.4vw,50px);line-height:1.16;
+    text-align:center;margin-bottom:34px;
+  }
+  .intro{color:var(--dim);font-size:16px;margin-bottom:20px;}
+  .intro em{font-style:italic;color:rgba(255,216,138,0.85);}
+
+  /* The promise. Sits above the field on purpose — someone about to say a
+     hard thing should read it before they type, not after they've sent. */
+  .fine-print{
+    margin:30px 0 4px;padding:18px 20px;border-radius:4px;
+    background:rgba(240,185,77,0.05);border:1px solid rgba(240,185,77,0.13);
+    font-size:13px;line-height:1.68;color:rgba(139,152,182,0.95);
+  }
+  .fine-print strong{color:var(--gold-soft);font-weight:500;}
+
+  /* Tally renders transparent so this page's background shows through; it
+     draws only the textarea and the button. src is set on load and cleared
+     when the page is hidden. */
+  .ask-frame{margin-top:22px;min-height:250px;}
+  .ask-frame iframe{display:block;width:100%;min-height:250px;border:0;background:transparent;}
+
+  .offline{
+    margin-top:26px;padding:22px;border:1px dashed rgba(240,185,77,0.22);
+    border-radius:4px;text-align:center;color:var(--dim);font-size:14.5px;
+  }
+  .offline[hidden]{display:none;}
+
+  .after{
+    margin-top:44px;padding-top:26px;
+    border-top:1px solid rgba(240,185,77,0.1);
+    text-align:center;font-size:14px;color:rgba(139,152,182,0.75);
+  }
+  .after a{color:var(--gold-soft);border-bottom:1px dotted rgba(240,185,77,0.4);}
+
+  footer{
+    padding:30px 28px 40px;text-align:center;
+    border-top:1px solid rgba(240,185,77,0.08);
+  }
+  .foot-links{
+    display:flex;gap:22px;justify-content:center;flex-wrap:wrap;
+    font-size:11px;letter-spacing:0.14em;text-transform:uppercase;
+    color:rgba(139,152,182,0.6);
+  }
+  .foot-links a:hover{color:var(--gold-soft);}
+  .foot-copy{margin-top:16px;font-size:11.5px;color:rgba(139,152,182,0.3);}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <a class="brand" href="index.html">Love <span>&amp;</span> Let Live</a>
+  <a class="toplink" href="index.html">← Back</a>
+</div>
+
+<main>
+  <div class="box">
+    <span class="eyebrow">The Unanswered Line</span>
+    <h1>Ask the thing you've never asked.</h1>
+
+    <p class="intro">In Ōtsuchi, Japan, there's a phone box in a garden with a disconnected rotary phone inside it. People go there to say things to the dead. Nobody is on the other end, and that is the point — <em>it's easier to say something true when nothing is going to answer back.</em></p>
+
+    <p class="intro">This is that. If there's a question you've never felt able to ask out loud — about what you believe, or stopped believing, or can't admit you doubt — because of who'd hear it, or because it felt disloyal, or stupid, or too late to be asking, you can put it down here.</p>
+
+    <p class="fine-print">
+      <strong>Nothing is coming back.</strong> There's no reply, no promise anything
+      happens next, and no way to follow one up. Questions left here are read, and
+      some may be read aloud one day — never with anything attached to them, because
+      there's nothing to attach. No name, no email, no account. I have no way of
+      knowing who you are, and I'd rather keep it that way.
+    </p>
+
+    <!-- The field is a Tally form. There are deliberately NO name or email
+         inputs anywhere in it — see the rules in the script block below. -->
+    <div class="ask-frame" id="ask-frame" hidden>
+      <iframe id="ask-iframe" title="Leave a question" loading="lazy"
+              src="" frameborder="0" marginheight="0" marginwidth="0"></iframe>
+    </div>
+
+    <div class="offline" id="offline" hidden>
+      The line isn't connected at the moment. Nothing you typed would have been
+      saved, so it's better that it isn't pretending to work.
+    </div>
+
+    <div class="after">
+      Want to see where the traditions actually meet? <a href="map.html">Open the map.</a>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="foot-links">
+    <a href="index.html">Home</a>
+    <a href="map.html">The Map</a>
+    <a href="about.html">About</a>
+    <a href="mailto:hello@loveandletlive.com">Contact</a>
+  </div>
+  <div class="foot-copy">© 2026 Love and Let Live</div>
+</footer>
+
+<script>
+"use strict";
+/* -----------------------------------------------------------------------
+   THE UNANSWERED LINE — standalone page
+
+   Same form as the one inside map.html (Tally KYAyDz), reached here without
+   picking a tradition first, so a sticker or a bare URL can lead straight to
+   it. Submissions land in the Notion database "The Unanswered Line —
+   Questions" in Blair Marendt's Space.
+
+   `entry_point` is sent as "Direct" so questions asked from this page can be
+   told apart in Notion from ones asked from a marker on the map. The hidden
+   field name is CASE-SENSITIVE and must stay exactly `entry_point`.
+
+   RULES, not negotiable:
+
+   1. NO MAILTO, EVER, anywhere on this page. A mailto opens the visitor's own
+      mail client and attaches their name and address — the precise opposite
+      of what the paragraph above promises. There is no degraded mode: if
+      TALLY_FORM_ID is empty the form is replaced with an honest notice.
+   2. NO NAME OR EMAIL FIELD, here or in the Tally form. The privacy line is
+      only true because those fields do not exist.
+   3. Keep the "may be read aloud" sentence visible. People answer honestly
+      here; using it later without having said so is how this turns sour.
+   4. In Tally, "Save answers for later" must stay OFF — it parks unsubmitted
+      answers in the visitor's own browser storage, where anyone sharing the
+      device could find a half-written question.
+   5. Never enable "Prevent duplicate submissions" — it identifies people by
+      IP, which is exactly what we promised not to hold.
+   ----------------------------------------------------------------------- */
+const TALLY_FORM_ID = 'KYAyDz';   // tally.so/r/KYAyDz — empty = show the notice
+
+(function(){
+  var wrap = document.getElementById('ask-frame');
+  var frame = document.getElementById('ask-iframe');
+  var offline = document.getElementById('offline');
+
+  if (!TALLY_FORM_ID) { offline.hidden = false; return; }
+
+  frame.src = 'https://tally.so/embed/' + TALLY_FORM_ID
+            + '?hideTitle=1&transparentBackground=1&dynamicHeight=1'
+            + '&entry_point=' + encodeURIComponent('Direct');
+  wrap.hidden = false;
+
+  /* Tally posts its rendered height so the box grows with the answer rather
+     than showing an inner scrollbar. Ignore anything from any other origin. */
+  window.addEventListener('message', function(e){
+    if (typeof e.origin !== 'string' || e.origin.indexOf('https://tally.so') !== 0) return;
+    var d = e.data;
+    if (typeof d === 'string') { try { d = JSON.parse(d); } catch (err) { return; } }
+    if (d && d.includesHeight && d.height) frame.style.height = d.height + 'px';
+  });
+})();
+</script>
+</body>
+</html>
