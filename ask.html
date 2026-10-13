@@ -80,12 +80,53 @@
   }
   .fine-print strong{color:var(--gold-soft);font-weight:500;}
 
-  /* Tally renders transparent so this page's background shows through; it
-     draws only the textarea and the button. src is set on load and cleared
-     when the page is hidden. */
-  .ask-frame{margin-top:22px;min-height:250px;}
-  .ask-frame iframe{display:block;width:100%;min-height:250px;border:0;background:transparent;}
+  /* The form. Ours now — no iframe, no third-party mark, same typeface as
+     everything else on the page. */
+  .ask-form{margin-top:24px;}
+  .ask-form textarea{
+    width:100%;min-height:150px;resize:vertical;
+    padding:16px 18px;
+    background:rgba(255,255,255,0.035);
+    border:1px solid rgba(240,185,77,0.18);border-radius:4px;
+    color:var(--text);font-family:'Inter',sans-serif;font-weight:300;
+    font-size:16px;line-height:1.62;
+  }
+  .ask-form textarea::placeholder{color:rgba(139,152,182,0.45);}
+  .ask-form textarea:focus{
+    outline:none;border-color:rgba(240,185,77,0.5);
+    background:rgba(255,255,255,0.055);
+  }
+  .ask-actions{display:flex;align-items:center;gap:16px;margin-top:18px;}
+  .ask-send{
+    padding:13px 30px;border:none;border-radius:2px;cursor:pointer;
+    background:var(--gold);color:#12101a;
+    font-family:'Inter',sans-serif;font-weight:600;font-size:11.5px;
+    letter-spacing:0.14em;text-transform:uppercase;
+  }
+  .ask-send:hover{background:var(--gold-soft);}
+  .ask-send:disabled{opacity:.45;cursor:default;}
+  .count{font-size:11.5px;color:rgba(139,152,182,0.5);margin-left:auto;}
+  .count.over{color:#e9896f;}
 
+  /* The honeypot. Not display:none — some bots skip hidden fields, and some
+     screen readers announce them. Pushed off-screen and taken out of the tab
+     order, so a person never meets it and a form-filling bot still does. */
+  .hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;}
+
+  /* The closing acknowledgement. Replaces the form entirely — there is no
+     "submit another", because the point is that you say it once and go. */
+  .said{padding:26px 0 6px;text-align:center;}
+  .said[hidden]{display:none;}
+  .said .mark{font-family:'Cormorant Garamond',serif;font-size:38px;color:var(--gold);opacity:.5;line-height:1;}
+  .said p{
+    font-family:'Cormorant Garamond',serif;font-style:italic;
+    font-size:22px;line-height:1.5;color:var(--gold-soft);margin:16px 0 0;
+  }
+  .said span{display:block;margin-top:16px;font-size:13.5px;color:rgba(139,152,182,0.7);}
+  .err{margin-top:16px;font-size:14px;color:#e9896f;}
+  .err[hidden]{display:none;}
+
+  .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;}
   .offline{
     margin-top:26px;padding:22px;border:1px dashed rgba(240,185,77,0.22);
     border-radius:4px;text-align:center;color:var(--dim);font-size:14.5px;
@@ -136,11 +177,29 @@
       and I'd rather keep it that way.
     </p>
 
-    <!-- The field is a Tally form. There are deliberately NO name or email
-         inputs anywhere in it — see the rules in the script block below. -->
-    <div class="ask-frame" id="ask-frame" hidden>
-      <iframe id="ask-iframe" title="Leave a question" loading="lazy"
-              src="" frameborder="0" marginheight="0" marginwidth="0"></iframe>
+    <!-- There are deliberately NO name or email inputs here. The only hidden
+         field is a honeypot — see the rules in the script block below. -->
+    <form class="ask-form" id="ask-form" novalidate>
+      <label for="q" class="sr-only">Your question</label>
+      <textarea id="q" name="question" maxlength="2000" required
+                placeholder="Say it however it comes out."></textarea>
+
+      <!-- Honeypot. Invisible to people, irresistible to bots. -->
+      <div class="hp" aria-hidden="true">
+        <label>Website<input type="text" name="website" tabindex="-1" autocomplete="off"></label>
+      </div>
+
+      <div class="ask-actions">
+        <button type="submit" class="ask-send" id="send">Say it</button>
+        <span class="count" id="count"></span>
+      </div>
+      <div class="err" id="err" hidden></div>
+    </form>
+
+    <div class="said" id="said" hidden>
+      <div class="mark">·</div>
+      <p>It’s been said out loud.<br>That was the whole point of it.</p>
+      <span>Nothing is coming back. You can close this.</span>
     </div>
 
     <div class="offline" id="offline" hidden>
@@ -169,52 +228,91 @@
 /* -----------------------------------------------------------------------
    THE UNANSWERED LINE — standalone page
 
-   Same form as the one inside map.html (Tally KYAyDz), reached here without
-   picking a tradition first, so a sticker or a bare URL can lead straight to
-   it. Submissions land in the Notion database "The Unanswered Line —
-   Questions" in Blair Marendt's Space.
+   Posts to a Cloudflare Worker, which writes one row into the Notion
+   database "The Unanswered Line — Questions". The worker's Notion
+   connection is INSERT-ONLY: it can add a question and is incapable of
+   reading one back.
 
-   `entry_point` is sent as "Direct" so questions asked from this page can be
-   told apart in Notion from ones asked from a marker on the map. The hidden
-   field name is CASE-SENSITIVE and must stay exactly `entry_point`.
+   `entry_point` is "Direct" here so questions asked from this page can be
+   told apart in Notion from ones asked from a marker on the map.
 
    RULES, not negotiable:
 
-   1. NO MAILTO, EVER, anywhere on this page. A mailto opens the visitor's own
-      mail client and attaches their name and address — the precise opposite
-      of what the paragraph above promises. There is no degraded mode: if
-      TALLY_FORM_ID is empty the form is replaced with an honest notice.
-   2. NO NAME OR EMAIL FIELD, here or in the Tally form. The privacy line is
-      only true because those fields do not exist.
-   3. Keep the "may be read aloud" sentence visible. People answer honestly
-      here; using it later without having said so is how this turns sour.
-   4. In Tally, "Save answers for later" must stay OFF — it parks unsubmitted
-      answers in the visitor's own browser storage, where anyone sharing the
-      device could find a half-written question.
-   5. Never enable "Prevent duplicate submissions" — it identifies people by
-      IP, which is exactly what we promised not to hold.
+   1. NO MAILTO, EVER. A mailto opens the visitor's own mail client and
+      attaches their name and address — the precise opposite of what the
+      paragraph above promises. If ENDPOINT is empty the form is replaced
+      with an honest notice rather than a degraded fallback.
+   2. NO NAME OR EMAIL FIELD. The privacy line is only true because those
+      fields do not exist. The one hidden input is a honeypot and is never
+      stored — the worker throws the whole submission away if it's filled.
+   3. Keep the "may be read aloud" sentence visible above the box.
+   4. `renderedAt` is sent so the worker can reject anything posted within
+      three seconds of load. Bots post instantly; people read first. Do not
+      "helpfully" send a precise client timestamp for anything else — the
+      worker stores a DATE only, deliberately.
+   5. Nothing about the visitor is collected or sent. Not the referrer, not
+      the page URL, not a session id. Don't add one.
    ----------------------------------------------------------------------- */
-const TALLY_FORM_ID = 'KYAyDz';   // tally.so/r/KYAyDz — empty = show the notice
+const ENDPOINT = 'https://unanswered-line.loveandletlive.workers.dev';
+const MAXLEN   = 2000;
 
 (function(){
-  var wrap = document.getElementById('ask-frame');
-  var frame = document.getElementById('ask-iframe');
+  var form    = document.getElementById('ask-form');
+  var box     = document.getElementById('q');
+  var send    = document.getElementById('send');
+  var count   = document.getElementById('count');
+  var err     = document.getElementById('err');
+  var said    = document.getElementById('said');
   var offline = document.getElementById('offline');
 
-  if (!TALLY_FORM_ID) { offline.hidden = false; return; }
+  if (!ENDPOINT) { form.hidden = true; offline.hidden = false; return; }
 
-  frame.src = 'https://tally.so/embed/' + TALLY_FORM_ID
-            + '?hideTitle=1&transparentBackground=1&dynamicHeight=1'
-            + '&entry_point=' + encodeURIComponent('Direct');
-  wrap.hidden = false;
+  var renderedAt = Date.now();
 
-  /* Tally posts its rendered height so the box grows with the answer rather
-     than showing an inner scrollbar. Ignore anything from any other origin. */
-  window.addEventListener('message', function(e){
-    if (typeof e.origin !== 'string' || e.origin.indexOf('https://tally.so') !== 0) return;
-    var d = e.data;
-    if (typeof d === 'string') { try { d = JSON.parse(d); } catch (err) { return; } }
-    if (d && d.includesHeight && d.height) frame.style.height = d.height + 'px';
+  /* Only ever shown near the limit — a counter ticking from the first
+     keystroke makes someone feel measured while they're trying to say
+     something hard. */
+  function tick(){
+    var left = MAXLEN - box.value.length;
+    if (left > 300) { count.textContent = ''; count.classList.remove('over'); return; }
+    count.textContent = left + ' left';
+    count.classList.toggle('over', left < 0);
+  }
+  box.addEventListener('input', tick);
+
+  form.addEventListener('submit', async function(e){
+    e.preventDefault();
+    var question = box.value.trim();
+    if (!question) { box.focus(); return; }
+
+    err.hidden = true;
+    send.disabled = true;
+    send.textContent = '…';
+
+    try {
+      var res = await fetch(ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          question:    question,
+          entry_point: 'Direct',
+          website:     form.website.value,   // honeypot, must stay empty
+          t:           renderedAt
+        })
+      });
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+
+      /* Don't say "thank you" and don't say "received" — both imply someone
+         on the other end. The form goes away and the line goes quiet. */
+      form.hidden = true;
+      said.hidden = false;
+    } catch (ex) {
+      send.disabled = false;
+      send.textContent = 'Say it';
+      err.textContent = 'That didn\u2019t go through, and nothing was saved. '
+                      + 'Your words are still in the box — try again in a moment.';
+      err.hidden = false;
+    }
   });
 })();
 </script>

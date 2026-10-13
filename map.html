@@ -280,10 +280,24 @@
     font-size:12.5px;line-height:1.62;color:rgba(139,152,182,0.92);
   }
   .fine-print strong{color:var(--gold-soft);font-weight:500;}
-  /* Tally iframe. It renders on a transparent background so the dark panel
-     shows through; the only thing it draws is the textarea and the button. */
-  .ask-frame{margin-top:20px;min-height:230px;}
-  .ask-frame iframe{display:block;width:100%;min-height:230px;border:0;background:transparent;}
+  /* The form. Ours — no iframe, no third-party mark. */
+  .ask-form{margin-top:20px;}
+  .ask-form textarea{
+    width:100%;min-height:130px;resize:vertical;padding:14px 16px;
+    background:rgba(255,255,255,0.035);
+    border:1px solid rgba(240,185,77,0.18);border-radius:3px;
+    color:var(--text);font-family:'Inter',sans-serif;font-weight:300;
+    font-size:15px;line-height:1.6;
+  }
+  .ask-form textarea::placeholder{color:rgba(139,152,182,0.45);}
+  .ask-form textarea:focus{outline:none;border-color:rgba(240,185,77,0.5);background:rgba(255,255,255,0.055);}
+  /* Honeypot: off-screen rather than display:none, so bots still fill it. */
+  .hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;}
+  .count{font-size:11px;color:rgba(139,152,182,0.5);margin-right:auto;align-self:center;}
+  .count.over{color:#e9896f;}
+  .err{margin-top:14px;font-size:13px;color:#e9896f;}
+  .err[hidden]{display:none;}
+  .said[hidden]{display:none;}
   /* the closing acknowledgement — the line going dead, gently */
   .said{text-align:center;padding:14px 0 4px;}
   .said .mark{font-family:'Cormorant Garamond',serif;font-size:34px;color:var(--gold);opacity:.55;line-height:1;}
@@ -373,17 +387,28 @@
       and I'd rather keep it that way.
     </p>
 
-    <!-- The field itself is a Tally form, loaded transparent so it inherits the
-         panel around it. The marker you asked from rides in on the query string
-         as a hidden field; nothing else is sent. src is set at open time and
-         CLEARED on close, so a half-typed question never survives the modal. -->
-    <div class="ask-frame" id="ask-frame">
-      <iframe id="ask-iframe" title="Leave a question" loading="lazy"
-              src="" frameborder="0" marginheight="0" marginwidth="0"></iframe>
-    </div>
+    <!-- The marker you asked from travels with the question; nothing else is
+         sent. The box is cleared whenever the modal closes, so a half-typed
+         question never survives for the next person on this device. -->
+    <form class="ask-form" id="ask-form" novalidate>
+      <textarea id="req-q" name="question" maxlength="2000" required
+                aria-label="Your question"
+                placeholder="Say it however it comes out."></textarea>
+      <div class="hp" aria-hidden="true">
+        <label>Website<input type="text" name="website" tabindex="-1" autocomplete="off"></label>
+      </div>
+      <div class="modal-actions">
+        <span class="count" id="count"></span>
+        <button type="button" class="btn-ghost" id="req-cancel">Never mind</button>
+        <button type="submit" class="btn-solid" id="req-send">Say it</button>
+      </div>
+      <div class="err" id="err" hidden></div>
+    </form>
 
-    <div class="modal-actions">
-      <button type="button" class="btn-ghost" id="req-cancel">Never mind</button>
+    <div class="said" id="said" hidden>
+      <div class="mark">·</div>
+      <p>It’s been said out loud.<br>That was the whole point of it.</p>
+      <span>Nothing is coming back. You can close this.</span>
     </div>
   </div>
 </div>
@@ -532,32 +557,31 @@ const EPISODES = {};
    you've never felt able to ask about a tradition, with no reply offered and
    nothing about you recorded. Modelled on Itaru Sasaki's wind phone.
 
-   The field is a Tally form (id below) embedded transparent inside our own
-   panel, so the framing above stays ours and Tally only draws the textarea
-   and the button. Submissions land in the Notion database "The Unanswered
-   Line — Questions". The marker the visitor asked from is passed as the
-   `entry_point` URL parameter into a hidden field of the same name — Tally
-   hidden fields are CASE-SENSITIVE and must match exactly.
+   The form is ours and posts to a Cloudflare Worker, which writes one row
+   into the Notion database "The Unanswered Line — Questions". The worker's
+   Notion connection is INSERT-ONLY — it can add a question and is incapable
+   of reading one back. The marker the visitor asked from travels as
+   `entry_point` so questions can be grouped by tradition in Notion.
 
    RULES, and they are not negotiable:
 
    1. NO MAILTO, EVER. A mailto opens the visitor's own mail client and
       attaches their name and address — the precise opposite of what the
-      panel promises. There is no degraded mode. If TALLY_FORM_ID is empty
+      panel promises. There is no degraded mode. If ASK_ENDPOINT is empty
       the whole feature stays hidden.
-   2. NO NAME OR EMAIL FIELD, ever, in the Tally form or here. The privacy
-      line is only true because the fields do not exist. Adding one makes
-      the site lie to someone in a soft moment.
+   2. NO NAME OR EMAIL FIELD, ever. The privacy line is only true because
+      the fields do not exist. The one hidden input is a honeypot, and a
+      filled one makes the worker discard the whole submission.
    3. The panel says questions may be read aloud. Keep that visible.
-   4. In Tally: "Save answers for later" must stay OFF. It parks unsubmitted
-      answers in the visitor's own browser storage, where anyone sharing the
-      device could find a half-written question. Switched off 2026-07-30.
-   5. Never switch on "Prevent duplicate submissions" — it identifies people
-      by IP, which is exactly what we promised not to hold.
+   4. Nothing is kept in the visitor's browser. Closing the modal wipes the
+      box, so a half-written question can't be found later by someone else
+      using the same device.
+   5. The worker never reads or stores an IP, never logs the question text,
+      and records a DATE rather than a timestamp. Don't add precision.
    ----------------------------------------------------------------------- */
 const REQUESTS_ENABLED = false;      // episode requests — off, indefinitely
 const ASK_ENABLED      = true;       // the unanswered line
-const TALLY_FORM_ID    = 'KYAyDz';   // tally.so/r/KYAyDz — empty = hidden
+const ASK_ENDPOINT     = 'https://unanswered-line.loveandletlive.workers.dev';  // empty = hidden
 
 /* =======================================================================
    VIEW STATES
@@ -1181,7 +1205,7 @@ function selectNode(id,fromEntry){
   /* The unanswered line. Hidden entirely unless there's somewhere for the
      question to land — a button that promises to receive something and then
      quietly drops it is the worst possible version of this idea. */
-  if(ASK_ENABLED && TALLY_FORM_ID){
+  if(ASK_ENABLED && ASK_ENDPOINT){
     const ab=document.createElement('button');
     ab.className='req-btn ask-btn';
     ab.innerHTML='Ask the thing you’ve never asked'+
@@ -1201,49 +1225,94 @@ document.getElementById('close').addEventListener('click',deselect);
 
 /* =======================================================================
    THE UNANSWERED LINE — modal
-   The panel is ours; the field inside it is Tally. We pass only the marker
-   label, and we tear the iframe down on close so nothing typed and then
-   abandoned stays in memory or in the page.
+   The panel is ours and so is the form. Closing wipes the box so nothing
+   half-written survives for the next person on this device.
    ======================================================================= */
-const reqModal =document.getElementById('req-modal');
-const askFrame =document.getElementById('ask-iframe');
-let lastFocus=null;
-
-function askURL(id){
-  const label=(byId[id]||{}).label||'Other';
-  /* hideTitle — the panel already has a heading of its own
-     transparentBackground — let the dark panel show through
-     dynamicHeight — Tally posts its height so the box doesn't scroll
-     entry_point — matches the CASE-SENSITIVE hidden field in the form */
-  return 'https://tally.so/embed/'+TALLY_FORM_ID
-       + '?hideTitle=1&transparentBackground=1&dynamicHeight=1'
-       + '&entry_point='+encodeURIComponent(label);
-}
+const reqModal = document.getElementById('req-modal');
+const askForm  = document.getElementById('ask-form');
+const askBox   = document.getElementById('req-q');
+const askSend  = document.getElementById('req-send');
+const askCount = document.getElementById('count');
+const askErr   = document.getElementById('err');
+const askSaid  = document.getElementById('said');
+const MAXLEN   = 2000;
+let lastFocus = null;
+let askPoint  = 'Other';
+let renderedAt = 0;
 
 function openRequest(id){
-  if(!TALLY_FORM_ID) return;
-  lastFocus=document.activeElement;
-  askFrame.src=askURL(id);
-  reqModal.hidden=false;
+  if(!ASK_ENDPOINT) return;
+  lastFocus = document.activeElement;
+  askPoint  = (byId[id]||{}).label || 'Other';
+  renderedAt = Date.now();
+
+  askForm.hidden = false;
+  askSaid.hidden = true;
+  askErr.hidden  = true;
+  askBox.value   = '';
+  askCount.textContent = '';
+  askSend.disabled = false;
+  askSend.textContent = 'Say it';
+
+  reqModal.hidden = false;
+  askBox.focus();
 }
+
 function closeRequest(){
-  reqModal.hidden=true;
-  askFrame.src='';            // discard anything half-written
+  reqModal.hidden = true;
+  askBox.value = '';            // discard anything half-written
+  askErr.hidden = true;
   if(lastFocus) lastFocus.focus();
 }
+
 document.getElementById('req-cancel').addEventListener('click',closeRequest);
 reqModal.addEventListener('click',e=>{ if(e.target===reqModal) closeRequest(); });
 document.addEventListener('keydown',e=>{
   if(e.key==='Escape' && !reqModal.hidden) closeRequest();
 });
 
-/* Tally reports its rendered height so the iframe can grow with the answer
-   instead of showing an inner scrollbar. Ignore anything from anywhere else. */
-window.addEventListener('message',e=>{
-  if(typeof e.origin!=='string' || e.origin.indexOf('https://tally.so')!==0) return;
-  let d=e.data;
-  if(typeof d==='string'){ try{ d=JSON.parse(d); }catch(err){ return; } }
-  if(d && d.includesHeight && d.height) askFrame.style.height=d.height+'px';
+/* Only appears near the limit — a counter running from the first keystroke
+   makes someone feel measured while they're trying to say a hard thing. */
+askBox.addEventListener('input',()=>{
+  const left = MAXLEN - askBox.value.length;
+  if(left > 300){ askCount.textContent=''; askCount.classList.remove('over'); return; }
+  askCount.textContent = left + ' left';
+  askCount.classList.toggle('over', left < 0);
+});
+
+askForm.addEventListener('submit', async e=>{
+  e.preventDefault();
+  const question = askBox.value.trim();
+  if(!question){ askBox.focus(); return; }
+
+  askErr.hidden = true;
+  askSend.disabled = true;
+  askSend.textContent = '…';
+
+  try{
+    const res = await fetch(ASK_ENDPOINT,{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        question:    question,
+        entry_point: askPoint,
+        website:     askForm.website.value,   // honeypot, must stay empty
+        t:           renderedAt
+      })
+    });
+    if(!res.ok) throw new Error('HTTP '+res.status);
+
+    /* Not "thank you", not "received" — both imply someone on the other end.
+       The form goes away and the line goes quiet. */
+    askForm.hidden = true;
+    askSaid.hidden = false;
+  }catch(err){
+    askSend.disabled = false;
+    askSend.textContent = 'Say it';
+    askErr.textContent = 'That didn’t go through, and nothing was saved. '
+                       + 'Your words are still in the box — try again in a moment.';
+    askErr.hidden = false;
+  }
 });
 
 /* =======================================================================
