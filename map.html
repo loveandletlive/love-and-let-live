@@ -200,6 +200,15 @@
   .panel h2{font-family:'Cormorant Garamond',serif;font-size:38px;font-weight:500;line-height:1.12;margin:12px 0 18px;}
   .panel .lede{color:var(--dim);font-size:15px;line-height:1.68;}
   .divider{height:1px;background:var(--line);margin:30px 0 24px;}
+  /* Shown under every lede. Deliberately quiet and deliberately NOT a legal
+     disclaimer — a disclaimer is defensive and signals doubt. This is the
+     credo pointed at the map: a site whose one conviction is that nobody
+     knows the truth is in no position to define anyone's religion. */
+  .caveat{
+    margin-top:16px;font-size:12.5px;line-height:1.6;
+    color:rgba(139,152,182,0.68);
+  }
+  .caveat a{color:var(--gold-soft);border-bottom:1px dotted rgba(240,185,77,0.4);}
   .sub{font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:var(--dim);margin-bottom:14px;}
   .road{
     display:block;width:100%;text-align:left;padding:13px 0;cursor:pointer;
@@ -361,6 +370,9 @@
   <span class="eyebrow" id="p-eyebrow">Entry Point</span>
   <h2 id="p-title"></h2>
   <p class="lede" id="p-lede"></p>
+  <p class="caveat">A summary, not a definition. Nobody who admits he can't know the truth
+  should be defining your faith for you — so if this gets yours wrong,
+  <a href="mailto:hello@loveandletlive.com">tell me</a> and I'll fix it.</p>
   <div class="divider"></div>
   <div class="sub">Roads from here</div>
   <div id="p-roads"></div>
@@ -431,13 +443,13 @@ const NODES = [
   { id:'christian', label:'Christian', r:2.75,
     lede:'Christians hold that God became human in Jesus of Nazareth, who taught, was crucified, and rose from the dead; that his life reveals God\'s character; and that people are reconciled to God through him. Asked which commandment was greatest, Jesus named two: love God, and love your neighbour as yourself.' },
   { id:'muslim', label:'Muslim', r:2.35,
-    lede:'Muslims hold that God is one, without partner or image, and that Muhammad is the final prophet in a line including Abraham, Moses and Jesus. The Qur\'an is received as God\'s own speech. Practice rests on five pillars: declaration of faith, prayer, almsgiving, fasting in Ramadan, and pilgrimage. Nearly every chapter opens by naming God the Merciful, the Compassionate.' },
+    lede:'Muslims hold that God is one, without partner or image, and that Muhammad is the final prophet in a line including Abraham, Moses and Jesus. The Qur\'an is received as God\'s own speech. For most Muslims, practice rests on five pillars: declaration of faith, prayer, almsgiving, fasting in Ramadan, and pilgrimage. Nearly every chapter opens by naming God the Merciful, the Compassionate.' },
   { id:'jewish', label:'Jewish', r:2.55,
     lede:'Judaism holds that God is one and entered into covenant with Israel, given form in the Torah and worked out across generations of interpretation. Study, questioning and argument are themselves acts of faith. Asked to summarise the whole Torah, Hillel answered: what is hateful to you, do not do to your neighbour — the rest is commentary.' },
   { id:'buddhist', label:'Buddhist', r:2.55,
     lede:'Buddhism begins with four observations: that life contains suffering, that suffering arises from craving and attachment, that it can cease, and that a path leads there. No creator god is required. Practice centres on meditation, ethical conduct, and the deliberate cultivation of compassion for all beings.' },
   { id:'hindu', label:'Hindu', r:1.10,
-    lede:'Hindu traditions hold that a single ultimate reality, Brahman, underlies all things, and that the self participates in it. Action carries consequence across lifetimes until liberation. The divine is approached through many names and forms, and is understood to have taken human form at times to restore righteousness.' },
+    lede:'Many Hindu traditions hold that a single ultimate reality, Brahman, underlies all things, and that the self participates in it. Action carries consequence across lifetimes until liberation. The divine is approached through many names and forms, and is understood to have taken human form at times to restore righteousness.' },
   { id:'sikh', label:'Sikh', r:2.35,
     lede:'Sikhs hold that there is one God, without form or image, present in all people, and that every human being is equal regardless of caste, gender or creed. Practice centres on honest work, remembrance of God\'s name, and sharing with others — expressed in the langar, a free kitchen open to anyone who comes.' },
   { id:'science', label:'Science', r:2.55,
