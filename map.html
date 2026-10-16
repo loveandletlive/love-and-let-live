@@ -483,6 +483,12 @@ const NODES = [
     lede:'The Bahá’í Faith holds that there is one God who has sent a succession of messengers — among them Abraham, Krishna, Moses, the Buddha, Jesus, Muhammad and, most recently, Bahá’u’lláh — each suited to the age that received them. It teaches the essential oneness of religion and of humanity, the equality of women and men, and that religion and reason must agree.' },
   { id:'lds', label:'Latter-day Saint', r:2.75,
     lede:'The Church of Jesus Christ of Latter-day Saints holds that Christ\'s original church was lost and then restored through Joseph Smith in the nineteenth century, and that revelation did not end with the New Testament. The Book of Mormon is received as scripture alongside the Bible. Families are understood to continue beyond death.' },
+  /* The last clause is deliberate. The popular version of Stoicism is "man up,
+     don't feel things", which is close to the opposite of what was taught, and
+     it's the exact misreading that makes men's mental health worse. One clause
+     corrects it without arguing with anyone. Don't cut it. */
+  { id:'stoic', label:'Stoic', r:2.15,
+    lede:'Stoicism holds that we are disturbed not by what happens to us but by our judgements about it, and that the one thing wholly in our power is how we meet what comes. It asks for courage, justice, self-command and clear sight, practised as part of a larger order the Stoics called the Logos. The ancients understood that order as divine; many who practise today do not, and the discipline survives either way. It is often mistaken for not feeling — the older texts are concerned with examining feeling rather than suppressing it.' },
 ];
 // Even angular spacing, assigned in list order.
 NODES.forEach((n,i)=> n.angle = i*360/NODES.length);
@@ -549,6 +555,11 @@ const ROADS = [
   ['taoism','indigenous', "Living with the natural order rather than against it. What did both know?"],
   ['recovery','humanist', "It works whether or not you believe it. What does that prove?"],
   ['recovery','atheist', "A higher power that needn’t be a deity. Honest, or a workaround?"],
+  ['stoic','recovery', "“Some things are up to us, some are not.” The Serenity Prayer, eighteen centuries early?"],
+  ['stoic','christian', "Paul wrote of contentment in any circumstance, using a Stoic word for it. Borrowed, or arrived at twice?"],
+  ['stoic','buddhist', "Both put the suffering in the judgement rather than the event. Two roads, one door?"],
+  ['stoic','still-asking', "Assent only to what withstands examination; suspend the rest. Humility, or method?"],
+  ['stoic','taoism', "Both say live according to nature. Do they mean the same nature?"],
   ['atheist','humanist', "Without a god, is the obligation to each other automatic?"],
   ['atheist','simulation', "Both doubt the story explains itself. Do they doubt the same way?"],
   ['bahai','lds', "Both hold revelation continued after the founding texts closed. Who decides when it stops?"],
@@ -708,6 +719,7 @@ function nodePos(n){
    themselves, which is rarely the word printed on the pin. */
 const ALIASES = {
   'still-asking':'agnostic doubt doubting unsure questioning seeker none nothing exvangelical deconstructing',
+  'stoic':'stoicism stoics marcus aurelius epictetus seneca meditations enchiridion philosophy virtue dichotomy of control',
   'christian':'christianity catholic protestant orthodox evangelical baptist methodist pentecostal lutheran jesus church bible',
   'muslim':'islam islamic sunni shia shiite sufi quran koran',
   'jewish':'judaism jew jews torah talmud orthodox reform conservative hebrew',
